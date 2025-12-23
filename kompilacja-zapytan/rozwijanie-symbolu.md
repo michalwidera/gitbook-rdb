@@ -4,17 +4,18 @@ Każdy, który pisał w języku SQL poznał magiczny znak \* w tym języku. Wywo
 
 Jako przykład można przytoczyć zapytanie:
 
-<pre><code>DECLARE a BYTE STREAM core1, 0.1 FILE 'datafile1.dat'
+```
+DECLARE a BYTE STREAM core1, 0.1 FILE 'datafile1.dat'
 DECLARE b INTEGER, c FLOAT STREAM core2, 0.2 FILE 'datafile2.txt'
 
-<strong>SELECT *
-</strong>STREAM str1
+SELECT *
+STREAM str1
 FROM core1+core2
 
 SELECT str2[1]
 STREAM str2
 FROM str1
-</code></pre>
+```
 
 Rodzi się pytanie – dlaczego aż tak skomplikowany przykład?
 
