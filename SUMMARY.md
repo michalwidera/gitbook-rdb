@@ -27,3 +27,4 @@
   * [Algebra regularnych serii czasowych](podstawy-matematyczne/algebra-regularnych-serii-czasowych.md)
   * [Wyrażenia algebraiczne](podstawy-matematyczne/wyrazenia-algebraiczne.md)
   * [Zależności pomiędzy operatorami algebry](podstawy-matematyczne/zaleznosci-pomiedzy-operatorami-algebry.md)
+* [Podsumowanie](podsumowanie.md)
