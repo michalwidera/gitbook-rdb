@@ -1,4 +1,8 @@
-# Architektura systemu przetwarzania danych
+---
+description: Opis powiązań i elementów z których zbudowany jest cały system.
+---
+
+# Architektura systemu
 
 Konstrukcja systemu przetwarzania danych to rozdział stricte techniczny. Przedstawię tutaj jak system został zaprojektowany, zbudowany gdzie i jak obecnie rozmieszczone są jego funkcjonalności.
 

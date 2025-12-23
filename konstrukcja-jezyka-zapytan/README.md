@@ -1,3 +1,7 @@
+---
+description: Język zapytań jest oparty na podstawach matematycznych. Logiczna konsewencja.
+---
+
 # Konstrukcja języka zapytań
 
 Komunikacja pomiędzy opracowanym systemem a użytkownikiem odbywa się za pomocą opracowanego, deklaratywnego języka zapytań. Konstrukcja języka oparta jest na przedstawionej w poprzednim rozdziale algebrze. Podobnie jak w przypadku systemów relacyjnych, gdzie algebra relacji tworzy podstawę dla języka SQL – w moim przypadku opracowana algebra tworzy podstawę dla języka zapytań RQL.

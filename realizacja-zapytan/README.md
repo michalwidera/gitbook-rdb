@@ -1,3 +1,9 @@
+---
+description: >-
+  Połączenie wiedzy z zakresu budowy systemu z wiedzą o kompilacji umożliwi
+  przedstawienie sposobu realizacji zapytań.
+---
+
 # Realizacja zapytań
 
 Proces realizacji opiera się na ciągłym przeglądzie drzewa zapytań i sekwencyjnym i hierarchicznym wywoływaniu procedur budujących kolejne krotki strumieni i kolejne schematy danych.
