@@ -1,0 +1,15 @@
+# Schemat architektury
+
+Poniżej przedstawiona jest na Rys. 6 schematycznie architektura systemu RetractorDB. Uwzględniono wszystkie istniejące aktualnie komponenty. Obszary ujęte w prostokątach z nagłówkami wypełnionymi poleceniami systemowymi odpowiadają istniejącym komponentom. Obszar zapisu artefaktów to symboliczna reprezentacja systemu plików.
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+<p align="center">Rys. 6 Schemat przepływu danych pomiędzy procesami RetractorDB</p>
+
+Na Rys. 6 widzimy procesy realizowane przez programy xretractror, xtrdb oraz xqry. Na rysunku schematycznie przedstawiono sposób komunikacji pomiędzy procesami w systemie RetractorDB. Rysunek pokazuje części wspólne opracowanych narzędzi.
+
+Proces xretractor komunikuje się z procesami xqry poprzez obszar pamięci współdzielonej. W tej pamięci dla każdego procesu xqry tworzona jest przez xretractor kolejka danych. Dane są odbierane na bieżąco przez procesy xqry. Zadaniem procesów xqry jest wysyłka danych dalej do innych systemów lub procesów. Jeśli proces  xqry ginie lub jest kończony xretraktor zarządzające obszarem wspólnym zwalnia obszar dedykowany we wspólnym obszarze.
+
+Oprócz kierowania danych do wysyłki poprzez pamięć współdzieloną, system RetractorDB zapisuje dane do tzw. Obszaru zapisu artefaktów. Aktualnie jest to katalog do którego zapisywane są na bieżąco efekty procesu przetwarzania strumieni danych w oparciu o plany realizacji zapytań realizowane w systemie RetractorDB.
+
+Plik z zapytaniami i dyrektywami RQL podaje się jako wymagany, pierwszy argument polecenia uruchamiającego system. Takie zachowanie prawdopodobnie ulegnie w przyszłości zmianie – system docelowo powinien uruchomić się jako usługa i oczekiwać od operatora pliku z dyrektywami. Na chwilę obecną system jednak uruchamiamy z wkładem inicjującym. Jak chcemy coś dołożyć w trakcie pracy, odsyłam do rozdziału pt. Zapytania Ad hoc.
