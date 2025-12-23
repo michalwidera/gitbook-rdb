@@ -1,3 +1,9 @@
+---
+description: >-
+  Kompilacja w efekcie tworzy graf. Polecam poznać sortowanie topologiczne.
+  Przydaje się.
+---
+
 # Budowa drzewa zależności
 
 Drzewo zależności to plan realizacji zapytań w postaci grafu skierowanego. Jest to struktura danych, która budowana jest w trakcie kompilacji oraz modyfikowana w trakcie dodawania zapytań AdHoc. Korzeniami tego grafu są deklaracje efemerydów. Wszelkiej postaci deklaracje tworzące obiekty zewnętrzne – tzw. Źródła danych. Wewnątrz grafu występują artefakty i substraty. Na końcu łańcucha przetwarzania znajdują się artefakty – jako wyniki końcowe łańcucha.

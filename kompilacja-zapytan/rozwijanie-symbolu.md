@@ -1,3 +1,7 @@
+---
+description: Tą funkcjonalność ukradłem bezpośrednio z języka SQL
+---
+
 # Rozwijanie symbolu \*
 
 Każdy, który pisał w języku SQL poznał magiczny znak \* w tym języku. Wywołanie polecenia SELECT z tym argumentem rozwinie listę argumentów w oparciu o schematy tabel powstałych w wyniku złączeń relacyjnych. Coś podobnego chciałem osiągnąć w języku RQL.

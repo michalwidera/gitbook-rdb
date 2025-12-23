@@ -1,3 +1,7 @@
+---
+description: Licencja poetica - jestem pierwszy to sobie wymyślam nazwy. Nie mam wyjścia.
+---
+
 # Substraty
 
 O substratach, efemerydach i artefaktach wspomniałem w rozdziale dotyczącym architektury systemu. W tym przypadku przedstawię przykład.

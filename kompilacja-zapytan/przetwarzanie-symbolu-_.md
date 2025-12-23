@@ -1,3 +1,7 @@
+---
+description: Cukier syntaktyczny.
+---
+
 # Przetwarzanie symbolu \_
 
 W niektórych zapytaniach można użyć symbolu podkreślenia. Ta technika to cukier syntaktyczny. Podobnie jak rozwijanie symbolu \* w wyniku pojawienia się jednego odwołania w wyniku kompilacji pojawi się wiele pól. Ile tych pól powstanie ma wpływ co z czym i w jakiej kolejności zostało złączone w klauzuli FROM.
