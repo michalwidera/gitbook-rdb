@@ -14,9 +14,10 @@ Opracowane równania algebry zaimplementowano pierwotnie w języku Python. Jest 
 
 {% tabs %}
 {% tab title="Kod źródłowy" %}
-<pre class="language-python"><code class="lang-python"># Operacja splątania (hash) dwóch list z określonymi krokami (delta).
-<strong>from fractions import Fraction
-</strong>from math import floor, ceil
+```python
+# Operacja splątania (hash) dwóch list z określonymi krokami (delta).
+from fractions import Fraction
+from math import floor, ceil
 
 A = range(1, 24)
 deltaA = Fraction(1, 2)
@@ -44,7 +45,7 @@ def main():
 
 if __name__ == '__main__':
     main()
-</code></pre>
+```
 
 
 {% endtab %}
