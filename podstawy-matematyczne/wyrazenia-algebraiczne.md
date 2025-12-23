@@ -13,9 +13,7 @@ To wyrażenie algebraiczne postaci C=A+B stworzy strumień danych o polach C(a<s
 
 Aby dokonać przeplotu strumienia danych zbiory A i B powinny posiadać te same schematy danych. Załóżmy więc że istnieje strumień D(d<sub>1</sub> int),1 – napływający podobnie jak strumień A – raz na sekundę.
 
-To wyrażenie algebraiczne postaci E=B#D stworzy strumień: E(e<sub>1</sub> int),⅓. Szybkość ⅓ bierze się ze wzoru (1\*½)/(1+½)
-
-Wzór znajdziesz przy definicji operacji przeplotu.
+To wyrażenie algebraiczne postaci E=B#D stworzy strumień: E(e<sub>1</sub> int),⅓. Szybkość ⅓ bierze się ze wzoru (1\*½)/(1+½). Wzór znajdziesz przy definicji operacji przeplotu.
 
 W tak zdefiniowanych strumieniach nadal poprawne jest wyrażenie:
 
@@ -23,4 +21,4 @@ W tak zdefiniowanych strumieniach nadal poprawne jest wyrażenie:
 F=((B#D)+A)>2
 ```
 
-I takie argumenty mogą się pojawić jako poprawne wyrażenia algebry szeregów czasowych w treści zapytania.
+I takie wyrażenia mogą się pojawić jako poprawne względem opracowanej algebry szeregów czasowych w treści zapytania.
