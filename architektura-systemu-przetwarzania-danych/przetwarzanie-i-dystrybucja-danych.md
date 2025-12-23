@@ -1,3 +1,7 @@
+---
+description: Ten proces wydaje się trywialny. Cierpliwości.
+---
+
 # Przetwarzanie i dystrybucja danych
 
 W przypadku rozpoczęcia procesu przetwarzania danych analizując przedstawiony na Rys. 7 można wydzielić następujący schemat przepływu - Rys. 10:
@@ -6,7 +10,7 @@ W przypadku rozpoczęcia procesu przetwarzania danych analizując przedstawiony 
 
 <p align="center">Rys. 10. Schemat przepływu sterowania w procesie przetwarzania</p>
 
-Do przeprowadzania procesu przetwarzania potrzebne będzie przygotowanie danych i zbudowanie ciągu przetwarzającego dane. W ramach tego ciągu na wejściu użyjemy przygotowanego pliku z planem realizacji zapytania, przygotujemy plik binarny z danymi.  Zbudujemy proces  przetwarzający dane i prezentujący wyniki.
+Do przeprowadzania procesu przetwarzania potrzebne będzie przygotowanie danych i zbudowanie ciągu przetwarzającego dane. W ramach tego ciągu na wejściu użyjemy przygotowanego pliku z planem realizacji zapytania, przygotujemy plik binarny z danymi. Zbudujemy proces przetwarzający dane i prezentujący wyniki.
 
 Źródłowy plik danych query.rql zmienimy na następujący:
 
@@ -24,7 +28,7 @@ STREAM str1
 FROM core0 + core1
 ```
 
-W tym przykładzie deklarujemy istnienie pliku tekstowego zawierającego dane tekstowe. Proponuję wypełnić plik datafile1.txt  następującą zawartością:
+W tym przykładzie deklarujemy istnienie pliku tekstowego zawierającego dane tekstowe. Proponuję wypełnić plik datafile1.txt następującą zawartością:
 
 ```
 20
@@ -63,7 +67,7 @@ $ xqry -d
 |core1| 1/5|  -1| 25| /dev/urandom|1|
 ```
 
-Powinno się pojawić coś podobnego. Oczywiście liczniki danych przy  str1 powinny się różnić. Logicznym jest że za każdym odczytem otrzymamy większe wartości dotyczące rozmiaru zgromadzonego strumienia str1.
+Powinno się pojawić coś podobnego. Oczywiście liczniki danych przy str1 powinny się różnić. Logicznym jest że za każdym odczytem otrzymamy większe wartości dotyczące rozmiaru zgromadzonego strumienia str1.
 
 Jeśli chcemy na ekranie zobaczyć co tam się właśnie dzieje wewnątrz procesu przetwarzania danych proponuję wydać poniższe polecenie i po kilku wierszach na ekranie nacisnąć dowolny klawisz aby przerwać ten proces:
 
@@ -79,7 +83,7 @@ $ xqry -s str1
 27 28
 ```
 
-Pierwsza kolumna zawiera sekwencję liczb – taką jaką wpisaliśmy do pliku datafile1.txt. Druga kolumna zawiera efekt przetwarzania. Dodawana jest wartość pobrana z generatora liczb pseudolosowych podzielona przez 20 – druga  kolumna opływa dane poniżej kolumny pierwszej.
+Pierwsza kolumna zawiera sekwencję liczb – taką jaką wpisaliśmy do pliku datafile1.txt. Druga kolumna zawiera efekt przetwarzania. Dodawana jest wartość pobrana z generatora liczb pseudolosowych podzielona przez 20 – druga kolumna opływa dane poniżej kolumny pierwszej.
 
 Jak można to zobaczyć w formie graficznej? Proponuję wydać następujące polecenie:
 

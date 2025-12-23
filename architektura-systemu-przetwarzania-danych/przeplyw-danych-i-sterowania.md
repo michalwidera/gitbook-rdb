@@ -1,3 +1,7 @@
+---
+description: Perspektywa przepływu danych.
+---
+
 # Przepływ danych i sterowania
 
 Dane i sterowanie w systemie RetractorDB tworzą kilka potencjalnych sposobów użycia komponentów systemu. Na Rys. 7 przedstawiono schematycznie przepływ danych pomiędzy procesami systemu RetractorDB, procesami systemu Linux oraz danymi źródłowymi i rezultatami pracy poszczególnych procesów.

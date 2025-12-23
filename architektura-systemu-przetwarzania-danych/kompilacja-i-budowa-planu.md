@@ -1,3 +1,9 @@
+---
+description: >-
+  Zaczynałem od Boost::Spirit, skończyłem z Antlr4 ... pliki .g4 zawierają
+  gramatykę.
+---
+
 # Kompilacja i budowa planu
 
 Proces kompilacji odbywa się przed każdym uruchomieniem procesu xretractor. Argument w postaci pliku z sekwencją poleceń i zapytań jest wymagany. W oparciu o przepływ przedstawiony na Rys. 7 przygotowałem opis procesu Rys. 8 realizujący proces kompilacji w trybie rozwojowym. Proces kompilacji można wywołać nawet jak już jakiś inny proces xretractor funkcjonuje. Blokowanie jednej instancji procesu przetwarzania danych odnosi się tylko do procesu realizacji planu zapytania. Wywołanie kompilacji w tym przypadku, nawet jeśli funkcjonuje już ten proces w systemie nie zgłosi błędu. Próba uruchomienia kolejnego przetwarzania – tak.

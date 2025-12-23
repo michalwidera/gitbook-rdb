@@ -1,3 +1,7 @@
+---
+description: Narzędzie xtrdb miało służyć tylko do testów ...
+---
+
 # Analiza artefaktów
 
 Analizując szerzej potencjalne ścieżki danych na Rys. 7 ostatnią nieopisaną ścieżką jest ścieżka w której bierze udział narzędzie xtrdb.

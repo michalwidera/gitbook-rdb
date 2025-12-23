@@ -1,3 +1,7 @@
+---
+description: Nadawanie nazw - prawo i konieczność w przypadku wejścia na niezbadany teren.
+---
+
 # Artefakty, Substraty, Efemerydy
 
 Z racji faktu, że system przeznaczony jest do pracy ciągłej i teoretycznie otrzymywane wyniki bez prowadzenia procesu retencji danych zapełniłby każdy nośnik danych wprowadzamy dodatkowe definicje związane z charakterem przetwarzanych danych.
