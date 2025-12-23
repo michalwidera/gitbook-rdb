@@ -1,4 +1,8 @@
-# Tytułem wstępu
+---
+description: Tytułem wstępu ...
+---
+
+# System przetwarzania serii czasowych
 
 System RetractorDB jest systemem przeznaczonym do przetwarzania i rejestrowania regularnych serii czasowych. System składa się z trzech współpracujących ze sobą programów. Programy zostały stworzone w języku C++ a repozytorium znajduje się pod ciągłą kontrolą testów i integracji. Kod testowany jest na platformach x64 i Arm64 działających pod kontrolą systemu Linux. System opracowano z zamiarem uruchamiania go w rygorze czasu rzeczywistego. Główny proces zarządza dwoma wątkami. Pierwszy wątek przetwarza plan realizacji zapytania. Ten wątek jest sekwencyjny i deterministyczny. Drugi wątek zapewniają komunikację ze światem zewnętrznym, wymianę danych i zarządzanie kolejkami komunikacyjnymi.
 

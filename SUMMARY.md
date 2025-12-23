@@ -2,7 +2,7 @@
 
 ## RetractorDB/Doc
 
-* [Tytułem wstępu](README.md)
+* [System przetwarzania serii czasowych](README.md)
   * [Geneza systemu](retractordb-doc/tytulem-wstepu/geneza-systemu.md)
   * [Dlaczego wybrano taką nazwę dla systemu?](retractordb-doc/tytulem-wstepu/dlaczego-wybrano-taka-nazwe-dla-systemu.md)
 
