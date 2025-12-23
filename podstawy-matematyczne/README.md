@@ -10,17 +10,17 @@ Jeśli p, q są dodatnimi liczbami niewymiernymi i zachodzi pomiędzy nimi zale�
 
 to sekwencje
 
-<p align="center"> <img src=".gitbook/assets/unknown (2).png" alt=""> </p>
+<p align="center"> <img src="../.gitbook/assets/unknown (2).png" alt=""> </p>
 
 oraz
 
-<p align="center">  <img src=".gitbook/assets/unknown (1) (1).png" alt=""> </p>
+<p align="center">  <img src="../.gitbook/assets/unknown (1) (1).png" alt=""> </p>
 
 oraz dokonują podziału zbioru dodatnich liczb całkowitych.
 
 Te dwie sekwencje dokonują podziału zbioru liczb naturalnych. Oznacza to że dysponując dwoma liczbami niewymiernymi, pomiędzy którymi wskazana w twierdzeniu zależność – będziemy mogli podzielić zbiór wszystkich liczb naturalnych na dwa rozłączne zbiory (Rys. 1).
 
-<p align="center"><img src=".gitbook/assets/unknown.png" alt=""></p>
+<p align="center"><img src="../.gitbook/assets/unknown.png" alt=""></p>
 
 <p align="center">Rys. 1 Zbiory rozłączne</p>
 
@@ -38,7 +38,7 @@ Sekwencje ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAAAhCAMAAABwWnyB
 4. Jeśli α jest liczbą niewymierną, wtedy\
    &#x20;![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHYAAABvCAMAAAAOoMRwAAAAAXNSR0IArs4c6QAAAIFQTFRFAAAAD0dhEEd+EEeZEGmZEGm0EIrOQkdhQmmZQorOQqjOQqjnbEdhbGlhbGl+bGmZbIqZbKi0bKjnbMb/bMbnk2lhk4p+k4q0k8bnk+P/uYp+uYphuah+uf//ueP/uf/nuePn3Kh+3KiZ3MaZ3Ma03P///8aZ/+O0///O/+PO///niek5WgAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAAB/0lEQVRoQ+2a21LCMBCGEw4GtIinqlBBq/b4/g9omt2CbRJJHQa4+PeCznSy+Xe/7G5mOggBAwEQAAEQAAEQAAEQAAEQAAEQAAEQAIELJiDPYhcMBKGBAAiAAAiAAAiAAAiAAAiciUAux5uh0v/x6Wmk8ipItV4rKWdbszbUx79xHY9WIbJlNNmKKjJkQn3E5z7SnkYZBSVbx0YwlY/6N9BHJKNXHakzrUI1G3WsjqdZ/10ub4hu83D4uICRTy7t3fRG9kuHbIs1Mdk6fByy7FM6001MFoeyLZSJrqSzdfg4ZAvFhUCghKiepZysPOk3FWMRIF51bJINtJZuwq2Sq+lWpON3Xw07ZA3c74WO1bK881XiV/2kfKjcbQSsUHe+0G3Z5pj0GT0E5knL9rKNHpMqoxZ5wNmWUeP5peZDdLuyu+pw1LUPWE7HQ+0Tal3I7PtH79mQ2cfdgr4wuiVFrSf44fKxZROqFKest6S4gUiJj7ZQ/lFsyXK7DrwBeE7w1CDxl7cBsrtyCLs1WoLUOVwX+pFVy40e6tWSrrG+WdlqjteZqBaDKkrPtIV8ai8tIdZSzjNRRO3leVg2kfe3eijMPkKLmNeZK1prhVk/W770wpyPt4qGxcmNi+LUusOG09Gi42FxtP2wEQiAAAiAAAiAAAiAAAiAABE4y59M5A/NWyTAL1w0vgAAAABJRU5ErkJggg==) i ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAABvCAMAAAD7Xk/AAAAAAXNSR0IArs4c6QAAAIRQTFRFAAAAD0dhEEd+EEeZEGmZEGm0EIrOQkdhQkd+QkeZQmlhQmmZQoqZQoq0QorOQqjOQqjnbEdhbEd+bGmZbIqZbMb/k2lhk4phk4p+k4q0k+P/uYphuYp+uah+uf//ueP/uf/n3Kh+3KiZ3MaZ3Ma03P//3OP//8aZ/+O0///O/+PO///nS2cTpAAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAACSElEQVRoQ+2a23LaMBCGvaFBtGlJnIOT4jSJQohl9P7vV+1KxgfJBhJmuPl148Fe7+HbXyuYIcuwQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAETkqAzrdOWgecgQAIgAAIgAAIgAAIgAAIgMB5CVQ0ezk2gzonmh/7UsJef8WLfaSb78e2xcUq5aXs1VXtfnqG2yU9fD92nSfh1be9jEq63rhYuumPLQ5plC0u+a3RZdSggO3TL19kx3twYlRTrVHTXn24fbH1wMlaLT+zzCx6ZXsKTmFNk6uDRLIvdtnXjFHyeZiRlFHSLk/NWawV+WS2T0Q/VlnVPh+ve8yWKQlpWySUpGmnSi9QW9CSg1Tq8jXTs7dItYm6R20ZqyivSiipbTabsUHlq/a9N+o+kn4ce9yWPUjs/gYTgK7Z7YYQF+uFwHHV87UjBg9cHg3ENGHLpbSrX3un2bzX5vZ59ioBguTrvBun64faXiVtm0w9xkTZVeuADTjDEEtkxynEEonqnrANzOs8ctNtNrO8WNV5UF6YcKlBF8WesOWuuWpipbk+daefUa4fwU9ooVGJ0TyMPWXrK0ogL/2Qa4DIZGnGi+Rg//47ILbPN23Lu4tuYuRNs3WQn7SN99nHH0eJ5pvt3Yumh+2dV9+4zids+SVNv38OznPXbJHTOsgrHH3vipZ8VDwTX01OV4PQiXk+bisJf7hJ2TtLXJeadeT3hX3zvE+JqR9yOkZvneSGLYQvFgiAAAiAAAiAAAiAAAiAAAiAQJrA+f7WQ/8B2xwuOSft5fYAAAAASUVORK5CYII=) dla ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAABvCAMAAADYBR4VAAAAAXNSR0IArs4c6QAAAJNQTFRFAAAAD0dhEEd+EEeZEGl+EGmZEGm0EIrOQkdhQkd+QmlhQml+QmmZQoq0QorOQqjOQqjnbEdhbGl+bIphbKjObKjnbMa0bMbnbMb/k2lhk4phk4p+k8bnk+P/uYphuYp+uaiZuf/Ouf//ueP/3Kh+3KiZ3MaZ3Ma03OPO3P//3OP//8aZ/+O0///O/+PO///n/+PnE17k4wAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAACFklEQVRoQ+2Z21LCMBCGGxAIKmjxWIGKGgrY1vj+T+du0kLSpjMdL3SG+feCwTTZw7f/puMQRTAQAAEQAAEQAAEQAAEQAAEQAAEQOCMC4q/sjJihFBAAARAAARAAARAAARD4ZwJlLMTktzno3UIKcfHU77x+Ebf9dub0v4VJir+MD1FEWT4cokL2TTUVz/0iRVshhu82FAeiSCbHvFpte9kt1s6iTuxpz76WRIXNSyIf3tmFQrrrhRy4DmtH+6WYfbheC2ny80yJm89AnWqcVfg816FIlOr1quEib1POOzqXTsrYAFAeBmVZnux7I0erVvqRYrcZwTLM2YI8aZ3aohPGpxNXrTrxKtTZ5eC+HYZP8T7yMD/mVMZh2RfTNeVFzyolVAd8ReVi1KRW7bM8PF6FDEfKaWch6SN3izBMHNObjpqMILKpqyUel9rc9ZR2Gnxum0I9DfeJcOjXoafGDkHohJNnfByysq76A9pLOXtfOx2n7RARvjc7sGxdLeVnjXliQZSxP3ll3J4wOmm7Q/gej3OrE7sz7bhl3DvCdLhxHzVkW+evrFclro6JKfvNvzI8fZz+MHPbHN7AMHMxNhJdqHXJ/B4IXFrhUEajrPTdzJk2JWat2yirAhC+eghUHcihT4k4dnpQgdpKMffGes/vHe+Grd8UjO8oiA5QWAYBEAABEAABEAABEAABEDhDAn/1E7X4AW4HJi3qbpkAAAAAAElFTkSuQmCC).
 5. Jeśli α jest liczbą wymierną, (niech q∈N będzie najmniejszą liczbą taką że qα∈N) wtedy\
-   &#x20;![](<.gitbook/assets/unknown (3).png>).
+   &#x20;![](<../.gitbook/assets/unknown (3).png>).
 
 
 

@@ -25,9 +25,9 @@ W operacji przeplotu biorą dwa różnie strumienie danych.
 
 Definiujemy ją następująco:
 
-<p align="center"><img src=".gitbook/assets/unknown (4).png" alt=""></p>
+<p align="center"><img src="../.gitbook/assets/unknown (4).png" alt=""></p>
 
-<p align="center"><img src=".gitbook/assets/unknown (5).png" alt=""></p>
+<p align="center"><img src="../.gitbook/assets/unknown (5).png" alt=""></p>
 
 Argumentem operacji splątania są dwa strumienie danych A i B, każdy z własną szybkością napływu danych. Wynikiem jest strumień wynikowy C – z nową różną od dwóch poprzednich szybkością napływu wyznaczoną wzorem powyżej.
 
@@ -37,11 +37,11 @@ Operację rozplątania definiujemy poprzez dwie operacje.
 
 1\. Rozplątanie lewostronne jako strumień A w postaci:
 
-<p align="center"><img src=".gitbook/assets/unknown (6).png" alt=""></p>
+<p align="center"><img src="../.gitbook/assets/unknown (6).png" alt=""></p>
 
 2. Rozplątanie prawostronne jako strumień B w postaci:
 
-<p align="center"><img src=".gitbook/assets/unknown (7).png" alt=""></p>
+<p align="center"><img src="../.gitbook/assets/unknown (7).png" alt=""></p>
 
 Operacje rozplątania 1 i 2 będziemy oznaczać symbolami % i &.
 
@@ -51,13 +51,13 @@ Operacje splątania i rozplątania są komplementarne. Oznacza to że przypomina
 
 Operacje sumy zdefiniowałem następująco:
 
-<p align="center"><img src=".gitbook/assets/unknown (8).png" alt=""></p>
+<p align="center"><img src="../.gitbook/assets/unknown (8).png" alt=""></p>
 
 <p align="center"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAAhCAMAAABHuHHwAAAAAXNSR0IArs4c6QAAAJlQTFRFAAAAAAAAAAA6AABmADpmADqQAGa2OgAAOgA6OgBmOjoAOjo6OmZmOmaQOma2OpC2OpDbZgAAZjoAZjo6ZmZmZmaQZpC2ZpDbZrbbZrb/kDoAkDo6kGYAkGZmkLbbkNv/tmYAtmY6tpA6trZmttv/tv//25A625Bm27Zm27aQ2//b2////7Zm/7aQ/9uQ/9u2/9vb//+2///b8xTnqwAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAAC3ElEQVRYR+1X7XKbMBBE2I76FbfgtLVpmtA0IaZQKLz/w/WkkwQSkiyGdiaZwf88Ot2uVrenI4rW36rAqsCqwMtWoEw/LSRYbO8WZpi5vc/i5Yhluqt03JycZhKZEd4lGlwIli2mzzZPY9Sa/BvSObFUgQEWgmWP0Q/fJcSGNkNMDIUyuJ9uqrXcIViumGIsbbH5Sa5mUwzcYAgdguWKGUvd0FP9/0g3dKxHCJY7Jh9uMt9VDTWt6dfx/I7AhjMl2/uoTUnMbCwvdVjjvim06gjBcscMuWqg7yANhhj9hmM+76uCHH8cgdHVeQ9H5r7uEhbB1064xkhrjcCDpVTy8hG31iXg+C7R28nles3j9yAvnGqvdqskco0haOYMwfLFKG0LRnc26T7jt16T0W6ZEtYYXfSJRjoEyxcjEaDqnc3Ko7c4JTZmYWPZ29SamTkEyxsjSPcZd6C9w3pIY08Q24Q/ZPVqa6PMIVh6DNyZVraCNKt6jm59El1GlD0BG6fgpRoynkFe5WBEPxYqZMT0mfZ+4JXyqp94/LINRU+QSbgcyiVIU7Z+1aZCsMwY9R8pYa5cqi+nhvZAiO0tNs4hyhaTqJJGVbSSZmcRYk2wypSQDwd20+ptM2NA+Gcaf5Xo/HFp6NCGueRn8rFq3mrDlFV2oarStH/YM+T+AbIMa+03kFxWzQSLnbjFVitJT2M2N3f9rVQWqzEfPR1Mj4aKarlUIFpdgCHiLxXzRXyEpIIBEMC5XTQVK5aoWUnajIm4tIW8em1gUhTV7VwiPWfdnIPFXo4latbOhi0zKSUrYy4XeQyvzmHmi7WCYW/DZtEl8Kzafrxpiy6o6mxiL3awP8ZXzXLuts8tLqL0s6soeWHU2I1LurV6DS7yMSrfWAb5pcTL1Pyc67PtU/v5dvfruwcuh/GxxO5TOz9sYcok149LGYbt/03JNcyDMNs6f93hhoK5w/KtUasCr1WBv9zIUY8v7H+gAAAAAElFTkSuQmCC" alt=""></p>
 
 Natomiast różnicę opisuje wzór:
 
-<p align="center"><img src=".gitbook/assets/unknown (9).png" alt=""></p>
+<p align="center"><img src="../.gitbook/assets/unknown (9).png" alt=""></p>
 
 Te operacje oznaczać będziemy znakami + oraz -.
 
@@ -71,7 +71,7 @@ Operację Agse oznaczać będę znakiem @.
 
 Podsumowując, algebra będąca podstawą dla deklaratywnego języka zapytań prezentuje się następująco:
 
-<p align="center"><img src=".gitbook/assets/unknown (10).png" alt=""></p>
+<p align="center"><img src="../.gitbook/assets/unknown (10).png" alt=""></p>
 
 Gdzie pierwszy element pary definiującej algebrę to model danych a drugi to zdefiniowane formalnie na tym modelu danych operacje.
 
