@@ -1,2 +1,0 @@
-# Sekwencjonowanie operacji sumowania
-
