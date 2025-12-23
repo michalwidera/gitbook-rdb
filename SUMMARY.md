@@ -27,4 +27,7 @@
   * [Artefakty, Substraty, Efemerydy](architektura-systemu-przetwarzania-danych/artefakty-substraty-efemerydy.md)
   * [Kompilacja i budowa planu](architektura-systemu-przetwarzania-danych/kompilacja-i-budowa-planu.md)
   * [Przetwarzanie i dystrybucja danych](architektura-systemu-przetwarzania-danych/przetwarzanie-i-dystrybucja-danych.md)
-* [Analiza artefaktów](analiza-artefaktow.md)
+  * [Analiza artefaktów](architektura-systemu-przetwarzania-danych/analiza-artefaktow.md)
+  * [Podsumowanie](architektura-systemu-przetwarzania-danych/podsumowanie.md)
+* [Kompilacja zapytań](kompilacja-zapytan/README.md)
+  * [Rozwijanie symbolu \*](kompilacja-zapytan/rozwijanie-symbolu.md)

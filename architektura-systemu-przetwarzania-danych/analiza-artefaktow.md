@@ -4,7 +4,7 @@ Analizując szerzej potencjalne ścieżki danych na Rys. 7 ostatnią nieopisaną
 
 W trakcie tworzenia systemu potrzebowałem narzędzia umożliwiającego dostęp do artefaktów w celu przeprowadzenia testów integracyjnych. W celu weryfikacji poprawności musiałem porównać wyniki przetwarzania na różnych etapach.
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 <p align="center">Rys. 13. Przepływ danych w analizie artefaktów</p>
 
