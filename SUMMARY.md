@@ -57,7 +57,7 @@
   * [4. Z.W.Zen, 2006](literatura/4.-z.w.zen-2006.md)
   * [5. T.Parr, 2013](literatura/5.-t.parr-2013.md)
   * [6. T.D.Pauw, 2022](literatura/6.-t.d.pauw-2022.md)
-  * [7. A.Stalz,2025](literatura/7.-a.stalz-2025.md)
+  * [7. A.Stalz, 2025](literatura/7.-a.stalz-2025.md)
   * [8. Conan.io, 2025](literatura/8.-conan.io-2025.md)
   * [9. D.W.Gunness, 2011](literatura/9.-d.w.gunness-2011.md)
   * [10. M.Widera, 2020](literatura/10.-m.widera-2020.md)
