@@ -1,5 +1,7 @@
 ---
-description: W systemie relacyjnym też używamy algebry zbiorów ...
+description: >-
+  Przypomnę że w typowym systemie relacyjnym też używamy algebry zbiorów, tylko
+  nie musimy się tym przejmować.
 ---
 
 # Algebra regularnych serii czasowych
