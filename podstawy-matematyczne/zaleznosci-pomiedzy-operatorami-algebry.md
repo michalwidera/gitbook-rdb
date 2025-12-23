@@ -1,3 +1,7 @@
+---
+description: Próbowałem namalować opracowaną algebrę.
+---
+
 # Reprezentacja graficzna
 
 Na Rys. 2 przedstawiono schematycznie zależności pomiędzy opracowanymi operatorami algebry serii czasowych. Na rysunku połączyłem zależności opracowanych operatorów, ich symboliczne oznaczenia stosowane w języku zapytań oraz kierunki przetwarzania danych.

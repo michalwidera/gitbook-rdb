@@ -1,3 +1,7 @@
+---
+description: W systemie relacyjnym też używamy algebry zbiorów ...
+---
+
 # Algebra regularnych serii czasowych
 
 Algebra – rozumiana jako konstrukcja w postaci zdefiniowanego zbioru i zdefiniowanych operacji na nim, stanowi podstawę dla opracowanego deklaratywnego język zapytań. W dalszej części pracy odnosząc się do Algebry (bez dodatkowego przymiotnika) będę ją rozumiał jako Algebrę regularnych serii czasowych. Jeśli będę chciał odwołać się do Algebry Relacji – jasno wyspecyfikuję przymiotnik.

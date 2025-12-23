@@ -1,3 +1,7 @@
+---
+description: Ta nazwa nazwa nie jest przypadkowa.
+---
+
 # Dlaczego wybrano taką nazwę dla systemu?
 
 Retraktory w medycynie to cała grupa narzędzi chirurgicznych. Retraktory, znane są również jako haki chirurgiczne lub rozwieraki. Są to narzędzia umożliwiające odsuwanie lub łącznie ze sobą struktur anatomicznych (np. ran, mięśni, kości, itd…). Znajdują zastosowanie z reguły podczas operacji lub innego zabiegu. Niektóre, te bardziej pomysłowe noszą nazwy swoich twórców.
