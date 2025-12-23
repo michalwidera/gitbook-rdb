@@ -45,7 +45,7 @@ Twierdzenie Beaty samo w sobie jest bardzo ciekawą obserwacją – jednak w prz
 
 I tu nasza podróż gwałtownie by się skończyła gdyby nie powstało kolejne twierdzenie. Sytuacja diametralnie uległa zmianie za sprawą matematyka – Aviezri Siegmund Fraenkel (1926) specjalizującego się w kombinatorycznych aspektach teorii gier.
 
-Przedstawił on w 1969 roku następujące twierdzenie \[[2](literatura/2.-a.-s.-fraenkel-1969.md)]:
+Przedstawił on w 1969 roku następujące twierdzenie \[[2](literatura/2.-a.s.fraenkel-1969.md)]:
 
 Sekwencje
 
