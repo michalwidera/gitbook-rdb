@@ -38,7 +38,9 @@ Graf zależności dla powyższego zestawu zapytań prezentuje się następująco
 
 Zbudujmy dodatkowy węzeł zależny od artefaktów. Najprościej dodać następujące zapytanie na końcu:
 
-<p align="center">SELECT str3[0] STREAM str3 FROM str1#str2</p>
+```
+SELECT str3[0] STREAM str3 FROM str1#str2
+```
 
 Graf zmieni swoją postać:
 
