@@ -35,6 +35,7 @@ RULE testrule1
 ON str1
 WHEN str1[0] > 11
 DO DUMP -5 TO 5 RETENTION 100
+
 RULE testrule2
 ON str1
 WHEN str1[0] = 13 OR str1[0] = 11
