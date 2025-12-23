@@ -1,6 +1,6 @@
 ---
 description: >-
-  Tym poleceniem możesz wywtorzyć reakcje systemu na zachodzące zjawiska.
+  Tym poleceniem możesz wytorzyć reakcje systemu na zachodzące zjawiska.
   Alarmowanie ma szerokie zastosowanie.
 ---
 
