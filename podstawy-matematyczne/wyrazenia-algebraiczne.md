@@ -24,9 +24,5 @@ F=((B#D)+A)>2
 
 I takie argumenty mogą się pojawić jako poprawne wyrażenia algebry szeregów czasowych w treści zapytania.
 
-### Reprezentacja graficzna
 
-Na Rys. 1 przedstawiono schematycznie zależności pomiędzy opracowanymi operatorami algebry serii czasowych. Na rysunku połączyłem zależności opracowanych operatorów, ich symboliczne oznaczenia stosowane w języku zapytań oraz kierunki przetwarzania danych.
-
-Przedstawiony rysunek stanowi też  graficzne podsumowanie treści zaprezentowanych w tym rozdziale. Przedstawiony graficzny sposób reprezentacji mam nadzieję ułatwi przyswojenie zasad panujących pomiędzy wprowadzonymi operatorami. Dla czytelności pominięte zostały operatory agregacji i serializacji oraz przesunięcia czasowego. Należy mieć świadomość że do pełnego obrazu brakuje ich na tym schemacie.
 
