@@ -1,3 +1,9 @@
+---
+description: >-
+  Dyrektywami ogarniam te aspekty konfiguracyjne systemu, które są szczególne
+  dla stworzonych zapytań a nie dla całego systemu.
+---
+
 # Dyrektywy konfiguracyjne
 
 Na chwilę obecną opracowałem trzy dyrektywy konfiguracyjne.
@@ -18,7 +24,7 @@ Storage służy do wskazania w którym katalogu systemowym powinny powstawać ws
 
 Substraty to zapytania oraz ich efekty, które powstają w wyniku rozkładu poleceń systemu przez kompilator na podstawie wyrażeń algebry szeregów czasowych. Są to zapytania, które widać w planie realizacji zapytań ale nie są one specyfikowane bezpośrednio w pliku .rql. Wynikają one z implementacji procesu konstrukcji planu realizacji zapytań.
 
-Domyślnie takie zapytania materializują dane na dysku w postaci nieskończonych plików. Tego typu zachowanie może być pożądane w przypadku prowadzenia procesu rozwoju oprogramowania, w przypadku  umieszczenia systemu w środowisku produkcyjnym lepiej substraty przechowywać w tymczasowych obszarach pamięci.
+Domyślnie takie zapytania materializują dane na dysku w postaci nieskończonych plików. Tego typu zachowanie może być pożądane w przypadku prowadzenia procesu rozwoju oprogramowania, w przypadku umieszczenia systemu w środowisku produkcyjnym lepiej substraty przechowywać w tymczasowych obszarach pamięci.
 
 Możliwe opcje w poleceniu SUBSTRAT to: memory, default, posix, generic, device, textsource.
 

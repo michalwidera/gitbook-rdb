@@ -1,3 +1,7 @@
+---
+description: To polecenie tworzy źródła prawdy - tzw. Efemerydy
+---
+
 # Polecenie DECLARE
 
 Polecenie DECLARE służy do zadeklarowania źródła danych.
@@ -32,7 +36,7 @@ FILE ‘plik.txt’
 
 Aby prasowanie pliku nastąpiło automatycznie, plik musi nosić rozszerzenie .txt. Na chwilę ta funkcjonalność została zaimplementowane na stałe i nie podlega parametryzacji.
 
-Jeśli plik danych wejściowych będzie nosić rozszerzenie .dat – plik ten zostanie potraktowany jako plik binarny a odczyt danych z niego zostanie również zapętlony. Zapętlenie polega na tym że po przeczytaniu ostatniej wartości z pliku źródłowego, pozycja odczytu pliku kierowana jest na początek. Dane z takiego pliku czytane są w nieskończonej pętli, po zakończeniu wracając do  początku.
+Jeśli plik danych wejściowych będzie nosić rozszerzenie .dat – plik ten zostanie potraktowany jako plik binarny a odczyt danych z niego zostanie również zapętlony. Zapętlenie polega na tym że po przeczytaniu ostatniej wartości z pliku źródłowego, pozycja odczytu pliku kierowana jest na początek. Dane z takiego pliku czytane są w nieskończonej pętli, po zakończeniu wracając do początku.
 
 Kwestia zapętlenia bądź zaniechania tej funkcjonalności kontrolowana jest dyrektywą ONESHOT. Dodanie jej na końcu polecenia DECLARE spowoduje że plik z danymi przeczyta się tylko raz a po przesłaniu zostaną przedstawione w strumieniu wartości 0.
 
