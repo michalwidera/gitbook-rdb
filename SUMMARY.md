@@ -31,3 +31,4 @@
   * [Podsumowanie](architektura-systemu-przetwarzania-danych/podsumowanie.md)
 * [Kompilacja zapytań](kompilacja-zapytan/README.md)
   * [Rozwijanie symbolu \*](kompilacja-zapytan/rozwijanie-symbolu.md)
+* [Aliasowanie](aliasowanie.md)
