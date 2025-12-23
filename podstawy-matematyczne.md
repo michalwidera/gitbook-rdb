@@ -1,26 +1,37 @@
 # Podstawy matematyczne
 
-Czy wiesz co to jest medal Fieldsa? Jest to nagroda przyznawana wyłącznie wybitnym matematykom w wieku poniżej 40 lat. Nazywana jest matematycznym Noblem. Co ciekawe żaden matematyk nie otrzyma nagrody Nobla – zgodnie z życzeniem fundatora. Sam John Charles Fields (1863-1932) był Kanadyjskim matematykiem. John Charles Fields miał jednego doktoranta – Samuela Beatty (1881-1970). &#x20;
+Czy wiesz co to jest medal Fieldsa? Jest to nagroda przyznawana wyłącznie wybitnym matematykom w wieku poniżej 40 lat. Nazywana jest matematycznym Noblem. Co ciekawe żaden matematyk nie otrzyma nagrody Nobla – zgodnie z życzeniem fundatora. Sam John Charles Fields (1863-1932) był Kanadyjskim matematykiem. John Charles Fields miał jednego doktoranta – Samuela Beatty (1881-1970).
 
 Samuel Beatty w 1926 roku opublikował następujące twierdzenie \[1]:
 
 Jeśli p, q są dodatnimi liczbami niewymiernymi i zachodzi pomiędzy nimi zależność
 
-<p align="center"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF8AAAB+CAMAAAB1Yj1UAAAAAXNSR0IArs4c6QAAAH5QTFRFAAAAD0dhEEd+EEeZEGmZEGm0EIrOQkd+QkdhQmlhQoqZQoq0QorOQqjnbEdhbGlhbIp+bIq0bIrObKi0bKjObMbnbMb/k2lhk4p+k+P/uYp+uYphuf//ueP/3Kh+3KiZ3MaZ3Ma03P/O3P///8aZ/8a0/+O0///O/+PO///nEPl0ZwAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAABm0lEQVRoQ+2aW1ODMBCFm2g1WgvesVJbFQTy//+gSXAsl5JdYeiUevLQl5492XxsNmGG2QwDBEAABEAABEAABEAABEAABEDgIATEuOMga8AkIAACIAACIAACIHBsBN4vV6yUuLq62UcoztYMf66uYZXeJBuOP1e3J1OWv4nj6ppTcOO4Ovgzyq0i4XLl6hqz60g+cRLi6qzXbivmgXtDWlIzcHXWpwiF9LcEHc0Tasau/4sXeUu1hCH+r49JHhAtYYi/WdcU/NPam3P9eU4hf1957fKvLLIM6Fh2S+et3inwOe3nO2L/se2TaphD+kOmymKTz901NsS/b9/9n3FbJVfmPJvTV1BzARXXzKvwL8vtMlMP90mqyAN4Y87oIvj7sZmpC3vgmB/vyGwGOqJkbQ93q3HR3hGXMk9Nd4THdsmpIALLDZES237PFI4MvZ2cLO+HP9ExmZeOztfFXdgDv7wSYvFGbs4vJRafQU/8pPvP2Ukus2VEF2YlpMcF2jRTNlMdUddKJgfIQAAEQAAEQAAEQOCECYz7eYX4BlpvHZG95V6zAAAAAElFTkSuQmCC" alt=""></p>
+$$
+\frac{1}{p}+\frac{1}{q}=1
+$$
 
 to sekwencje
 
-<p align="center"> <img src=".gitbook/assets/unknown (2).png" alt=""> </p>
+$$
+\left\{
+\left\lfloor np\right\rfloor \right\} _{n=1}^{\infty }=\left\lfloor
+p\right\rfloor ,\left\lfloor 2p\right\rfloor ,\left\lfloor 3p\right\rfloor
+,\ldots
+$$
 
 oraz
 
-<p align="center">  <img src=".gitbook/assets/unknown (1) (1).png" alt=""> </p>
+$$
+\left\{ \left\lfloor nq\right\rfloor \right\}
+_{n=1}^{\infty }=\left\lfloor q\right\rfloor ,\left\lfloor 2q\right\rfloor
+,\left\lfloor 3q\right\rfloor ,\ldots
+$$
 
 oraz dokonują podziału zbioru dodatnich liczb całkowitych.
 
 Te dwie sekwencje dokonują podziału zbioru liczb naturalnych. Oznacza to że dysponując dwoma liczbami niewymiernymi, pomiędzy którymi wskazana w twierdzeniu zależność – będziemy mogli podzielić zbiór wszystkich liczb naturalnych na dwa rozłączne zbiory (Rys. 1).
 
-<p align="center"><img src=".gitbook/assets/unknown.png" alt=""></p>
+<div align="center"><img src=".gitbook/assets/unknown.png" alt=""></div>
 
 <p align="center">Rys. 1 Zbiory rozłączne</p>
 
@@ -30,23 +41,74 @@ I tu nasza podróż gwałtownie by się skończyła gdyby nie powstało kolejne 
 
 Przedstawił on w 1969 roku następujące twierdzenie \[2]:
 
-Sekwencje ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAAAhCAMAAABwWnyBAAAAAXNSR0IArs4c6QAAAIRQTFRFAAAAAAAAAAA6AABmADpmADqQAGa2OgAAOjo6OjpmOmaQOma2OpDbZgAAZjoAZjpmZmZmZmaQZpC2ZpDbZrb/kDoAkGY6kGaQkLbbkNv/tmYAtmY6tpA6ttvbttv/tv/btv//25A627Zm27aQ29u229vb2////7Zm/9uQ/9u2//+2///bLoMD1AAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAABzElEQVRIS+1VyXLCMAy1y2IKDXRLWqClMaFk+///qyXLsgMkhmNn0IExsvUkPS0R4i53Bs4YKJZPV7NSylEuhB5/Dlu06UPkRWiv5RT+FsvJkdV1piTI7GVHuiYJrqMBmwjW+KhNIWI8beffv5WainavpE3ZX0YB4UGTYKB4ssG0KQBt5Lv5rZR1WRL4VZBgBsYoGnGEBpwmQbQ2Rd2NgQrtuaJQMcZKIRlEDnBxi2yCPtlgdCU0QinRGaHpIPs6k3K8dg+8qz59YGuPezVHmi3BKKWa7IQe/bj6xvTGu8vScIliADwJcKwUZFCpZ+8GYfv07gbe2DodMknlorZzhWuSk26ggp7p2Z13DHkDC9zLFBB3HzNqAz3Xd0AdEbZQHpRYD/rQ4vbpO6CuMlR9LhQdgsJZ0D49VNYVqkloZEuaB57Wzpxx9kSpmz/WB0lwNiaCBdWW2gIjaj++qHAcxYk+RLXNb7qAtsAhe7PXPKYG5VivcjPQ9cp0G4Oe6ANQGlPXo3L2ysuQF8pWysXReJWP0MG+sbv6AJQWSocR+tOzUQYsyHBwD1+8bBJLeb9E1tulz4mOfbQKNc6HvRZL3iqR+Nw17ru7/CcG/gCQkii0UN06AQAAAABJRU5ErkJggg==) oraz ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFMAAAAhCAMAAACShmf4AAAAAXNSR0IArs4c6QAAAH5QTFRFAAAAAAAAAAA6AABmADpmADqQAGa2OgAAOjo6OjpmOmaQOma2OpC2OpDbZgAAZjoAZjo6ZmaQZpCQZpC2ZpDbZrb/kDoAkGY6kLbbkNv/tmYAtmY6ttvbttv/tv//25A627Zm27aQ29u229vb2////7Zm/9uQ/9u2//+2///biiUUyAAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAAB7klEQVRIS+1V7XaCMAylG1p1G+xL3FCHOEF4/xdcm6RpWunc2W/7q+cmuc3HJWTZ7dw6IDrQlk9/70en7r+yJv/4NWKs7pzDuNVKLfcX7hJv1NzY23J2cm7njYkyZ/HiIoeCrUOR77NzYfIIj8RNBp/WOlbkNm5Xu+9ez7PxoBXWyza+NmodUpIL4kNh04QL5DJWlqcGW6/xvY64/bXxCEaTC+K9di/iG42lGQogGyuAgjTxFXzTH1ct4o3olL0C2mtoBHnaRtDpNbgPcT9DvPYSqW0OnVVApyCUyEShWCLlL/JM4ZmPxdtBr0ALolC4tmUODRAnhZvsqEaTB5wZaMn1iq6m1+8RI7hM4bZU6i2O6LhRNCmcC/TRehz0Q0SawgWnI6+pe8xJlUwoCSq8wAWnawLOSNROQTRCn2wKF5xuKDR3PyNQBsvCc6Zw64ozYvV1qGwuyRlwRfiTwkUsc9Q4C9Y8K9ulS9QRHogMXXtaQscNaYa/zU6px1N2LuljZ+1FeFCBFYrTplq88fJzO6RWr89GtssdRjFnhAvOi/3FNkpU7BIwuYAYl432WzmYAEzN2sRmxlGS9CPcB6cfsz7w7+BaMapx2yfCmbPVefw3CJNty/XEZ0I9mPz9wYa7dkjZF24p/Brfzf6/DvwAi9wt1xO4OhsAAAAASUVORK5CYII=) dokonują podziału zbioru ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAhCAMAAADj/gtmAAAAAXNSR0IArs4c6QAAAFFQTFRFAAAAAAAAAAA6AABmADqQAGa2OgAAOgA6Ojo6OpDbZgAAZmYAZraQZrb/kDoAkNv/tmYAtv+2tv//25A625Bm27Zm2////7Zm/9uQ//+2///bQQE1RQAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAAAk0lEQVQoU82QWxaDIAxEEx9obcVHtCD7X2iTEKRLMB+QM3AnAwDPrYCIvcSTpvtq0AOx3bNmCoT2jbNI0enGRd1pZLOYtPbXpCRlHuCaXskLmbxOEYdhARKSz0wKfD06XkK14slK3lbJy3Uh15Iqh2Fyq1bqwOTnL6g+i3As7slnh+juB57WMWlB64cQlqCW9/nbD44SBscFrerRAAAAAElFTkSuQmCC) wtedy i tylko wtedy gdy następujące pięć warunków zostanie spełnionych:
+Sekwencje
 
-1. &#x20;![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAABvCAMAAAA3x3UrAAAAAXNSR0IArs4c6QAAAIpQTFRFAAAAD0dhEEd+EEeZEGmZEGm0EIrOQkdhQkd+QmlhQmmZQoq0QorOQqjnbEdhbGlhbGl+bGmZbIp+bIqZbKjObMb/bMbnk2lhk4p+k4q0k8bnk+P/uYphuYp+uah+ueP/uf//uePnuf/n3Kh+3KiZ3MaZ3OPO3P///8aZ/+O0/+PO///O///n/+PnptmKqwAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAABqklEQVRoQ+2ZW1PCMBCFs6UYr0UUBLkIWrFNWv//3zNJW2hIgnUGGXHOPsFw2M1+e7J9KGMIEAABEAABEAABEAABEAABEAABEDgTAnSiOBMcOCYIgAAIgAAIgAAIgAAI/A8C75zoevVLvWwu503mRTRjMom2349ZUQ5omzinO5U6p352zAoml5xGD9RbV3nLiSlZBFuSw5/0aqmXo6xImkKCm0/lxDTmxOYqfu3eqaveFWqYLejCSfi55Df7JpFTonjuQ+1TK1JNR2k9nNQp9HEfjZy55by/YmnvrQLeCq9aj8QtZLmhVBRmLjPBtUrwRxq3fwyozewPFvJSqCapCxSJNdCQWh/lMLqcYv/9rRpS/253H1TbhbxmCJ0xrToR3ALXraPa3mzRhXot2tMqpP6JWujqm1rf28M+qkckuGdffes6Vvk691wj5jAxrZTPL97FGLhHW20xoCe1VBsX2pbWTFqbQR0nk8N1SmM59NhlT61TbWhn0HKpHhO3wZVqby+jFEnwsWKphUqsI7K8032jQQkCIAACIAACIAACIAACIPCHCZzoxTJ9AU85IkDESwjvAAAAAElFTkSuQmCC)
-2. &#x20;![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAABvCAMAAAA3x3UrAAAAAXNSR0IArs4c6QAAAIFQTFRFAAAAD0dhEEd+EEeZEGmZEGm0EIrOQkdhQkd+QmmZQorOQqjOQqjnbEdhbGlhbGl+bGmZbIp+bIqZbKi0bKjObKjnbMb/k2lhk4p+k4q0k+P/uYp+uYphuah+ueP/uf//uf/nuePn3Kh+3MaZ3Ma03P///8aZ/+O0///O/+PO///n/a1ImQAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAABtUlEQVRoQ+2Z63KCMBCFs6hNtcXaK1YstlCu7/+ADSQikFh3puqUmbN/nNElZ/fbS4ZRCBgIgAAIgAAIgAAIgAAIgAAIgAAIjIQAXclGggNhggAIgAAIgAAIgAAIgMA/IlCFkmgeXTyiwp9GovQnO55ScrvhOQ69qqCRiOmN83y5JO+0UBXMUuu0jO7r72L98buVa++RGKm7hKpAR7jlZBS+pAWHsUsol02WrOfrgPqO5ZpouhEZ9VG5hDS5KuAkZAllchaJePJpqLTcXUINsu+lCutgWe/ttF/8bkaaRi6fhlE6hOoSFb73eqoN2t87QgZD4Vt95BAq/DqoRC64Sh2htrydAh2FkdENu7mbWDpCZiJyaU2gIyPjPGyb4/l1hMxEOAbDIbTVpe4L8ZrBlCiX9qqwhfbxxZogw4YZVe8fHKG2nowFpqNQLbqfBFXftFzt1JYsV/3db2ekIN2lQm1KxqLTQgkdfEOiRSpy37pjbKEtPT+o6Zx/MaApl1xdXLV5Jza9JWSuCJ7KX7z0uF7BzLheXol1250jDDOu5zgKZ4AACIAACIAACIAACIyVwJX+WKYfd3MfTcg1aiIAAAAASUVORK5CYII=)
-3. &#x20;![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJwAAABvCAMAAAAuYFnIAAAAAXNSR0IArs4c6QAAAI1QTFRFAAAAD0dhEEd+EEeZEGmZEGm0EIrOQkdhQkd+QmlhQmmZQoq0QorOQqjnbEdhbGlhbGl+bGmZbIp+bIqZbKjObMb/bMbnk2lhk4p+k4q0k8bnk+P/uYphuYp+uah+uaiZuf//ueP/uf/n3Kh+3KiZ3MaZ3Ma03OPO3P///8aZ/+O0/+PO///O///n/+PnOhr/wAAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAACPUlEQVR4Xu2a61LCMBCFswWMohZRkMpFwIrSm+//ePYGTZusiYzOMMPpL4Zudk++vSTDIAQeEAABEAABEAABEAABEAABEAABEAABEAABEAABEACBiyFAZ/xcTBKwURAAARAAARAAARAAARAAARAAARAAgX8hEFFv8y+O/8JpSFcnuXmXRMPtSUudF2Uzb+FqvLtuTJfeXCS++1rXGC271HcFl4yo0RLRfe4mosHeHPXjwWXL2YxbX3mN5ZTdlBohCbzHpjpr3qkZ3WdAt04Jt4kLOe2dCKvJPvWPrRPL8mM2KwG2niSQw7ljEm3ilpr3wrExgiLukM9lp5u+1rI/N2Q6CYj6C60MTOIY08N2uQiKuLAutlarZ7sbb2KswUgOtiLsvXWbzyCOMy3F8RGEUVxTFRH1mXTGsrCK5RN16lsXx5oW2vgIwiZOZGszubwyC1GprxWoJo43rcgxEUrvx4YwpjU3MVZERSNfrvRe1Po9/jiiTKbt5nKoOa4hjL0UVsQMQ0sjx5sqEm3dWo8SsexWUemjM4VqI4OtJo43bfPTJ6mS1nr68mefMr/rOoqlftZ1xf1gqk3OzhmkiBPVDImcLg0ljuzl1S6uyoTR1DbW1cMqHdFzfvA73bbyLeyT8SakaTJun2paWnlTm7gdKbMgW+VXpjt15Mb5F82jYlqVlrGvXbH0OceaVi3FRDi88Ph7gm1z+nvb2fp7j1gBAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiDQInDGf7CmbwNDMsN/JehsAAAAAElFTkSuQmCC)
-4. Jeśli α jest liczbą niewymierną, wtedy\
-   &#x20;![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHYAAABvCAMAAAAOoMRwAAAAAXNSR0IArs4c6QAAAIFQTFRFAAAAD0dhEEd+EEeZEGmZEGm0EIrOQkdhQmmZQorOQqjOQqjnbEdhbGlhbGl+bGmZbIqZbKi0bKjnbMb/bMbnk2lhk4p+k4q0k8bnk+P/uYp+uYphuah+uf//ueP/uf/nuePn3Kh+3KiZ3MaZ3Ma03P///8aZ/+O0///O/+PO///niek5WgAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAAB/0lEQVRoQ+2a21LCMBCGEw4GtIinqlBBq/b4/g9omt2CbRJJHQa4+PeCznSy+Xe/7G5mOggBAwEQAAEQAAEQAAEQAAEQAAEQAAEQAIELJiDPYhcMBKGBAAiAAAiAAAiAAAiAAAiciUAux5uh0v/x6Wmk8ipItV4rKWdbszbUx79xHY9WIbJlNNmKKjJkQn3E5z7SnkYZBSVbx0YwlY/6N9BHJKNXHakzrUI1G3WsjqdZ/10ub4hu83D4uICRTy7t3fRG9kuHbIs1Mdk6fByy7FM6001MFoeyLZSJrqSzdfg4ZAvFhUCghKiepZysPOk3FWMRIF51bJINtJZuwq2Sq+lWpON3Xw07ZA3c74WO1bK881XiV/2kfKjcbQSsUHe+0G3Z5pj0GT0E5knL9rKNHpMqoxZ5wNmWUeP5peZDdLuyu+pw1LUPWE7HQ+0Tal3I7PtH79mQ2cfdgr4wuiVFrSf44fKxZROqFKest6S4gUiJj7ZQ/lFsyXK7DrwBeE7w1CDxl7cBsrtyCLs1WoLUOVwX+pFVy40e6tWSrrG+WdlqjteZqBaDKkrPtIV8ai8tIdZSzjNRRO3leVg2kfe3eijMPkKLmNeZK1prhVk/W770wpyPt4qGxcmNi+LUusOG09Gi42FxtP2wEQiAAAiAAAiAAAiAAAiAABE4y59M5A/NWyTAL1w0vgAAAABJRU5ErkJggg==) i ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAABvCAMAAAD7Xk/AAAAAAXNSR0IArs4c6QAAAIRQTFRFAAAAD0dhEEd+EEeZEGmZEGm0EIrOQkdhQkd+QkeZQmlhQmmZQoqZQoq0QorOQqjOQqjnbEdhbEd+bGmZbIqZbMb/k2lhk4phk4p+k4q0k+P/uYphuYp+uah+uf//ueP/uf/n3Kh+3KiZ3MaZ3Ma03P//3OP//8aZ/+O0///O/+PO///nS2cTpAAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAACSElEQVRoQ+2a23LaMBCGvaFBtGlJnIOT4jSJQohl9P7vV+1KxgfJBhJmuPl148Fe7+HbXyuYIcuwQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAETkqAzrdOWgecgQAIgAAIgAAIgAAIgAAIgMB5CVQ0ezk2gzonmh/7UsJef8WLfaSb78e2xcUq5aXs1VXtfnqG2yU9fD92nSfh1be9jEq63rhYuumPLQ5plC0u+a3RZdSggO3TL19kx3twYlRTrVHTXn24fbH1wMlaLT+zzCx6ZXsKTmFNk6uDRLIvdtnXjFHyeZiRlFHSLk/NWawV+WS2T0Q/VlnVPh+ve8yWKQlpWySUpGmnSi9QW9CSg1Tq8jXTs7dItYm6R20ZqyivSiipbTabsUHlq/a9N+o+kn4ce9yWPUjs/gYTgK7Z7YYQF+uFwHHV87UjBg9cHg3ENGHLpbSrX3un2bzX5vZ59ioBguTrvBun64faXiVtm0w9xkTZVeuADTjDEEtkxynEEonqnrANzOs8ctNtNrO8WNV5UF6YcKlBF8WesOWuuWpipbk+daefUa4fwU9ooVGJ0TyMPWXrK0ogL/2Qa4DIZGnGi+Rg//47ILbPN23Lu4tuYuRNs3WQn7SN99nHH0eJ5pvt3Yumh+2dV9+4zids+SVNv38OznPXbJHTOsgrHH3vipZ8VDwTX01OV4PQiXk+bisJf7hJ2TtLXJeadeT3hX3zvE+JqR9yOkZvneSGLYQvFgiAAAiAAAiAAAiAAAiAAAiAQJrA+f7WQ/8B2xwuOSft5fYAAAAASUVORK5CYII=) dla ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAABvCAMAAADYBR4VAAAAAXNSR0IArs4c6QAAAJNQTFRFAAAAD0dhEEd+EEeZEGl+EGmZEGm0EIrOQkdhQkd+QmlhQml+QmmZQoq0QorOQqjOQqjnbEdhbGl+bIphbKjObKjnbMa0bMbnbMb/k2lhk4phk4p+k8bnk+P/uYphuYp+uaiZuf/Ouf//ueP/3Kh+3KiZ3MaZ3Ma03OPO3P//3OP//8aZ/+O0///O/+PO///n/+PnE17k4wAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAACFklEQVRoQ+2Z21LCMBCGGxAIKmjxWIGKGgrY1vj+T+du0kLSpjMdL3SG+feCwTTZw7f/puMQRTAQAAEQAAEQAAEQAAEQAAEQAAEQOCMC4q/sjJihFBAAARAAARAAARAAARD4ZwJlLMTktzno3UIKcfHU77x+Ebf9dub0v4VJir+MD1FEWT4cokL2TTUVz/0iRVshhu82FAeiSCbHvFpte9kt1s6iTuxpz76WRIXNSyIf3tmFQrrrhRy4DmtH+6WYfbheC2ny80yJm89AnWqcVfg816FIlOr1quEib1POOzqXTsrYAFAeBmVZnux7I0erVvqRYrcZwTLM2YI8aZ3aohPGpxNXrTrxKtTZ5eC+HYZP8T7yMD/mVMZh2RfTNeVFzyolVAd8ReVi1KRW7bM8PF6FDEfKaWch6SN3izBMHNObjpqMILKpqyUel9rc9ZR2Gnxum0I9DfeJcOjXoafGDkHohJNnfByysq76A9pLOXtfOx2n7RARvjc7sGxdLeVnjXliQZSxP3ll3J4wOmm7Q/gej3OrE7sz7bhl3DvCdLhxHzVkW+evrFclro6JKfvNvzI8fZz+MHPbHN7AMHMxNhJdqHXJ/B4IXFrhUEajrPTdzJk2JWat2yirAhC+eghUHcihT4k4dnpQgdpKMffGes/vHe+Grd8UjO8oiA5QWAYBEAABEAABEAABEAABEDhDAn/1E7X4AW4HJi3qbpkAAAAAAElFTkSuQmCC).
-5. Jeśli α jest liczbą wymierną, (niech q∈N będzie najmniejszą liczbą taką że qα∈N) wtedy\
-   &#x20;![](<.gitbook/assets/unknown (3).png>).
+$$
+\mathcal{B}(\alpha ,\alpha ^{\prime })
+:=
+\left( \left\lfloor \frac{n-\alpha^{\prime }}{\alpha }\right\rfloor \right) _{n=1}^{\infty }
+$$
 
+oraz
 
+$$
+\mathcal{B}(\alpha ,\alpha ^{\prime })
+:=
+\left( \left\lfloor \frac{n-\alpha^{\prime }}{\alpha }\right\rfloor \right) _{n=1}^{\infty }
+$$
+
+dokonują podziału zbioru ℕ wtedy i tylko wtedy gdy następujące pięć warunków zostanie spełnionych:
+
+1\.
+
+$$
+0<\alpha<1
+$$
+
+2\.
+
+$$
+\alpha+\beta=1
+$$
+
+3\.
+
+$$
+0\leq \alpha +\alpha ^{\prime }\leq 1
+$$
+
+4. Jeśli α jest liczbą niewymierną, wtedy:
+
+$$
+\alpha ^{\prime }+\beta ^{\prime }=0
+$$
+
+<p align="center">i</p>
+
+$$
+k\alpha +\alpha ^{\prime }\not\in \mathbb{Z}
+$$
+
+<p align="center">dla</p>
+
+$$
+2\leq k\in \mathbb{N}
+$$
+
+5. Jeśli α jest liczbą wymierną, (niech q∈N będzie najmniejszą liczbą taką że qα∈N), wtedy
+
+$$
+\frac{1}{q}\leq \alpha +\alpha ^{\prime }
+$$
+
+<p align="center">i</p>
+
+$$
+\left\lceil q\alpha ^{\prime }\right\rceil +\left\lceil q\beta ^{\prime}\right\rceil =1
+$$
 
 No i to jest to czego potrzebujemy! Liczb niewymiernych co prawda nie mamy, ale liczby wymierne rozumiane jako stosunek dwóch liczb naturalnych to jest temat do ogarnięcia za pomocą komputera.
 
 W naszym przypadku najpierw stworzyłem prototypy równań w języku Python a następnie zacząłem poszukiwać podstaw matematycznych, które wyglądały podobnie i można było się oprzeć na nich jako dobrze udokumentowanych równaniach popartych formalnymi dowodami. Dowodami oczywiście przeprowadzonymi przez bardziej doświadczonych matematyków. Skromne umiejętności pozwoliły jednak na identyfikację tych dwóch publikacji w aspekcie moich pomysłów.
 
 W tym dokumencie nie umieściłem formalnych dowodów. Dlatego przestawiłem tutaj jedynie stosowane w systemie równania i twierdzenia. Po formalne dowody odsyłam do moich publikacji naukowych \[3].
-
-
-
