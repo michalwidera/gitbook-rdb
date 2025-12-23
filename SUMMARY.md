@@ -22,7 +22,6 @@
   * [Polecenie RULE](konstrukcja-jezyka-zapytan/polecenie-rule.md)
   * [Dyrektywy konfiguracyjne](konstrukcja-jezyka-zapytan/dyrektywy-konfiguracyjne.md)
 * [Architektura systemu przetwarzania danych](architektura-systemu-przetwarzania-danych/README.md)
-  * [Elementy składowe](architektura-systemu-przetwarzania-danych/elementy-skladowe.md)
   * [Schemat architektury](architektura-systemu-przetwarzania-danych/schemat-architektury.md)
   * [Przepływ danych i sterowania](architektura-systemu-przetwarzania-danych/przeplyw-danych-i-sterowania.md)
   * [Artefakty, Substraty, Efemerydy](architektura-systemu-przetwarzania-danych/artefakty-substraty-efemerydy.md)
