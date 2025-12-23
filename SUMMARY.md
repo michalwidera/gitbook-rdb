@@ -20,3 +20,7 @@
 * [Tytułem wstępu](wstep/tytulem-wstepu.md)
 * [Geneza systemu](wstep/geneza-systemu.md)
 * [Dlaczego wybrano taką nazwę dla systemu?](wstep/dlaczego-wybrano-taka-nazwe-dla-systemu.md)
+
+***
+
+* [Podstawy matematyczne](podstawy-matematyczne.md)
