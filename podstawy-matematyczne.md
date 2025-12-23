@@ -1,5 +1,7 @@
 ---
-description: Bez tego trudno jest wyjaśnić o co chodzi ...
+description: >-
+  Każde równanie umieszczone w pracy eliminuje liczbę czytelników o połowę.
+  Trudno, bez ofiar się nie obejdzie.
 ---
 
 # Podstawy matematyczne
