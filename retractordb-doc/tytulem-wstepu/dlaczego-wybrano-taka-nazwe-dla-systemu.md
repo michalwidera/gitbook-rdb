@@ -7,3 +7,5 @@ Na zasadzie analogii postanowiłem że nazwę swoje narzędzie Retraktorem. Retr
 {% hint style="info" %}
 Definicja (Retrakcja i Retraktor danych): Zastosowanie aparatu numerycznego do wydobycia, przetworzenia a następnie zwrócenia danych zawartych w seriach czasowych lub sygnałach cyfrowych nazywamy retrakcją danych. Narzędzie służące do realizacji tego procesu nazywamy Retraktorem danych.
 {% endhint %}
+
+{% embed url="https://youtu.be/bOabgAn15lg" %}
