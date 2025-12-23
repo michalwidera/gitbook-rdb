@@ -6,7 +6,7 @@ description: W systemie relacyjnym też używamy algebry zbiorów ...
 
 Algebra – rozumiana jako konstrukcja w postaci zdefiniowanego zbioru i zdefiniowanych operacji na nim, stanowi podstawę dla opracowanego deklaratywnego język zapytań. W dalszej części pracy odnosząc się do Algebry (bez dodatkowego przymiotnika) będę ją rozumiał jako Algebrę regularnych serii czasowych. Jeśli będę chciał odwołać się do Algebry Relacji – jasno wyspecyfikuję przymiotnik.
 
-Zaproponowałem \[3] następującą definicje regularnej serii czasowej (tzw. Modelu danych) oraz następujące operacje i definicje.
+Zaproponowałem \[[3](../literatura/3.-m.widera-2006.md)] następującą definicje regularnej serii czasowej (tzw. Modelu danych) oraz następujące operacje i definicje.
 
 {% hint style="success" %}
 Przez strumień danych rozumiemy uporządkowaną parę S := (s<sub>n</sub>,∆) – gdzie pierwszy element to uporządkowania seria danych a drugi, oznaczony symbolem delty to regularny odstęp czasu pomiędzy kolejnymi elementami serii danych.

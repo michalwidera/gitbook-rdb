@@ -43,7 +43,7 @@ Twierdzenie Beaty samo w sobie jest bardzo ciekawą obserwacją – jednak w prz
 
 I tu nasza podróż gwałtownie by się skończyła gdyby nie powstało kolejne twierdzenie. Sytuacja diametralnie uległa zmianie za sprawą matematyka – Aviezri Siegmund Fraenkel (1926) specjalizującego się w kombinatorycznych aspektach teorii gier.
 
-Przedstawił on w 1969 roku następujące twierdzenie \[2]:
+Przedstawił on w 1969 roku następujące twierdzenie \[[2](literatura/2.-a.-s.-fraenkel-1969.md)]:
 
 Sekwencje
 
@@ -115,4 +115,4 @@ No i to jest to czego potrzebujemy! Liczb niewymiernych co prawda nie mamy, ale 
 
 W naszym przypadku najpierw stworzyłem prototypy równań w języku Python a następnie zacząłem poszukiwać podstaw matematycznych, które wyglądały podobnie i można było się oprzeć na nich jako dobrze udokumentowanych równaniach popartych formalnymi dowodami. Dowodami oczywiście przeprowadzonymi przez bardziej doświadczonych matematyków. Skromne umiejętności pozwoliły jednak na identyfikację tych dwóch publikacji w aspekcie moich pomysłów.
 
-W tym dokumencie nie umieściłem formalnych dowodów. Dlatego przestawiłem tutaj jedynie stosowane w systemie równania i twierdzenia. Po formalne dowody odsyłam do moich publikacji naukowych \[3].
+W tym dokumencie nie umieściłem formalnych dowodów. Dlatego przestawiłem tutaj jedynie stosowane w systemie równania i twierdzenia. Po formalne dowody odsyłam do moich publikacji naukowych \[[3](literatura/3.-m.widera-2006.md)].
