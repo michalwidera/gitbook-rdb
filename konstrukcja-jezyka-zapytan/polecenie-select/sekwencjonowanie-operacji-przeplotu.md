@@ -10,7 +10,7 @@ SELECT * STREAM str1 FROM A#B
 
 Oprócz znaku # zamiast znaku + w klauzuli from oba pliki się niczym nie różnią. Wywołajmy kompilację oraz program swirly. Plik graficzny prezentować się będzie następująco:
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <p align="center">Rys. 5 Schemat kulkowy - operacja przeplotu</p>
 

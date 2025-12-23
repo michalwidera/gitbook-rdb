@@ -17,7 +17,7 @@ Graf, w którym uwypuklone zostaną dependencje pomiędzy poszczególnymi obiekt
 $ xretractor -c query5.rql -d > out.dot && dot -Tsvg out.dot -o out.svg
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 <p align="center">Rys. 14. Dependencja efemeryd-artefakt</p>
 
@@ -44,7 +44,7 @@ SELECT str3[0] STREAM str3 FROM str1#str2
 
 Graf zmieni swoją postać:
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 <p align="center">Rys. 16. Dependencja efemerydy-artefakty-artefakty</p>
 
@@ -60,7 +60,7 @@ SELECT str4[0] STREAM str4 FROM (core1+core0)>2
 
 Tak dołączone zapytanie spowoduje modyfikację drzewa zależności w sposób przedstawiony na Rys. 17.
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 <p align="center">Rys. 17. Dependencja z substratem</p>
 
