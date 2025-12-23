@@ -2,7 +2,7 @@
 
 Zagadnienia związane z przetwarzaniem sygnałów cyfrowych zawierają w sobie problemy związane z filtracją. Celem filtracji jest rozdzielenie informacji zawartych wewnątrz sygnału. Zazwyczaj celem jest oddzielenie sygnału od jego zakłóceń.
 
-Filtry mogą być analogowe oraz cyfrowe. W ramach proponowanego rozwiązania skupimy się na filtrach cyfrowych. Filtr cyfrowy implementowany jest jako ciąg operacji na kolejnych danych przetwarzanego sygnału w danym oknie czasowym. Z reguły dobierając filtr cyfrowy musimy zdecydować na jakie kompromisy musimy się zgodzić. Dodatkowo, możemy trafić na zabezpieczenia prawne związane z niektórymi algorytmami lub metodami \[9].
+Filtry mogą być analogowe oraz cyfrowe. W ramach proponowanego rozwiązania skupimy się na filtrach cyfrowych. Filtr cyfrowy implementowany jest jako ciąg operacji na kolejnych danych przetwarzanego sygnału w danym oknie czasowym. Z reguły dobierając filtr cyfrowy musimy zdecydować na jakie kompromisy musimy się zgodzić. Dodatkowo, możemy trafić na zabezpieczenia prawne związane z niektórymi algorytmami lub metodami \[[9](../literatura/9.-d.w.gunness-2011.md)].
 
 Projektując filtr cyfrowy musimy określić jaki zakres częstotliwości chcemy wytłumić a jaki wzmocnić lub pozostawić nienaruszony. Parametry te określamy jako pasmo zaporowe i przepustowe. Jednym ze znanych mi narzędzi używanych do konstrukcji filtrów cyfrowych jest program GNU Octave ([https://octave.org](https://octave.org)). Za pomocą tego narzędzia możemy wygenerować wymagane współczynniki do obliczeń prostego cyfrowego filtru sygnałowego.
 
@@ -119,7 +119,7 @@ STREAM outputAll
 FROM output+source
 ```
 
-Widzimy tutaj 4 zapytania. Przeglądając rozdział dotyczący rozwijania symbolu \_ (na str. 46) nie powinno na zdziwić że próba podejrzenia wyniku kompilacji tego pliku przewinie nam kilka ekranów. Możliwy do szybkiej analizy podgląd zachodzącego procesu możemy uzyskać wydając polecenie:
+Widzimy tutaj 4 zapytania. Przeglądając rozdział dotyczący [rozwijania symbolu \_](../kompilacja-zapytan/przetwarzanie-symbolu-_.md) nie powinno na zdziwić że próba podejrzenia wyniku kompilacji tego pliku przewinie nam kilka ekranów. Możliwy do szybkiej analizy podgląd zachodzącego procesu możemy uzyskać wydając polecenie:
 
 ```
 $ xretractor -c query.rql -p -d > out.dot && dot -Tsvg out.dot -o out.svg
