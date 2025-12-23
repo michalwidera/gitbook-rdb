@@ -17,9 +17,9 @@
 
 ## Wstęp
 
-* [Tytułem wstępu](wstep/tytulem-wstepu.md)
-* [Geneza systemu](wstep/geneza-systemu.md)
-* [Dlaczego wybrano taką nazwę dla systemu?](wstep/dlaczego-wybrano-taka-nazwe-dla-systemu.md)
+* [Tytułem wstępu](wstep/tytulem-wstepu/README.md)
+  * [Geneza systemu](wstep/tytulem-wstepu/geneza-systemu.md)
+  * [Dlaczego wybrano taką nazwę dla systemu?](wstep/tytulem-wstepu/dlaczego-wybrano-taka-nazwe-dla-systemu.md)
 
 ***
 
