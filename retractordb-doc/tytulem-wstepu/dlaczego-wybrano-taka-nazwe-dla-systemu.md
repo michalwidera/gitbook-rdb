@@ -1,5 +1,5 @@
 ---
-description: Ta nazwa nazwa nie jest przypadkowa.
+description: Ta nazwa systemu nie jest przypadkowa.
 ---
 
 # Dlaczego wybrano taką nazwę dla systemu?
