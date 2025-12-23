@@ -1,0 +1,23 @@
+# Polecenie SELECT
+
+Każde polecenie SELECT w systemie RetractorDB tworzy ciągłe zapytania. Zapytania te realizowane są od momentu pojawienia się w systemie aż do zakończenia pracy systemu.
+
+Składnia polecenia SELECT przedstawia się następująco:
+
+SELECT wyrażenie\_algebraiczne \[, wyrażenie\_algebraiczne] \
+STREAM nazwa\_budowanego\_strumienia\
+FROM strumieniowe\_wyrażnie\_algebraiczne \
+\[FILE nazwa\_pliku\_artefaktu] \
+\[RETENTION pojemoność \[segmenty]]
+
+Osoby posługujące się językiem SQL zauważą od razu że przedstawione powyżej polecenie odbiega znacząco od tego co znają z zakresu relacyjnych baz danych.
+
+Pierwsza różnica poza składnią to fakt że polecenia te wprowadzone do systemu realizują się aż do zakończenia pracy systemu. Każde polecenie SELECT jest zapytaniem ciągłym. Klauzula STREAM wymaga nadania przez twórcę każdemu zapytaniu unikalnej nazwy. O ile wyrażenia algebraiczne na liście klauzuli SELECT nie odbiegają od formy znanej z systemów relacyjnych o tyle strumieniowe wyrażenie algebraiczne musi spełniać warunki przedstawione w poprzednim rozdziale dotyczącym wyrażeń algebraicznych. Opcjonalne klauzule FILE oraz RETENTION zapewniają procesy kierowania wyników i zarządzania formą ich retencji. Stare, podzielone pliki wynikowe mogą być usuwane na bieżąco zapewniając systemowi miejsce na nowe dane w ruchu ciągłym.
+
+Przykładem zapytania tworzącego nowy strumień danych może być następujące polecenie w języku RQL.
+
+SELECT str1\[0]\*10 + str1\[1]\*10, str\[2]\
+STREAM str1\
+FROM A+B
+
+Tak zbudowane zapytanie zakłada że ktoś zadeklarował strumienie A i B. Operację tą mógł wykonać za pomocą słowa kluczowego DECLARE lub innego polecenia SELECT. W oparciu tylko o wiersz zawierający zapytanie nie jesteśmy w stanie stwierdzić jak szybko dane strumienia str1 napływają. Ta informacja jest wyliczana na etapie kompilacji w oparciu o strumienie A i B i wyrażenie algebraiczne w klauzuli FROM.
