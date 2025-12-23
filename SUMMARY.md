@@ -41,4 +41,4 @@
   * [Przepływ danych i sterowania](architektura-systemu-przetwarzania-danych/przeplyw-danych-i-sterowania.md)
   * [Artefakty, Substraty, Efemerydy](architektura-systemu-przetwarzania-danych/artefakty-substraty-efemerydy.md)
   * [Kompilacja i budowa planu](architektura-systemu-przetwarzania-danych/kompilacja-i-budowa-planu.md)
-* [Przetwarzanie i dystrybucja danych](przetwarzanie-i-dystrybucja-danych.md)
+  * [Przetwarzanie i dystrybucja danych](architektura-systemu-przetwarzania-danych/przetwarzanie-i-dystrybucja-danych.md)

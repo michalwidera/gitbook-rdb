@@ -2,7 +2,7 @@
 
 W przypadku rozpoczęcia procesu przetwarzania danych analizując przedstawiony na Rys. 7 można wydzielić następujący schemat przepływu - Rys. 10:
 
-<figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 <p align="center">Rys. 10. Schemat przepływu sterowania w procesie przetwarzania</p>
 
@@ -42,7 +42,7 @@ Plik będzie zawierać kolejne liczby od 20 do 28.
 
 Rzut okna na plan realizacji zapytania przedstawi obraz na Rys. 11:
 
-<figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 <p align="center">Rys. 11. Graficzna reprezentacja planu realizacji zapytania 2</p>
 
@@ -89,7 +89,7 @@ $ xqry -s str1 -p 50,50 | gnuplot 2>/dev/null
 
 Na ekranie pojawi się następujące okno z płynącymi na bieżąco danymi:
 
-<figure><img src=".gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 <p align="center">Rys. 12. Zrzut zawartości okna gnuplot przedstawiający dane napływające</p>
 
