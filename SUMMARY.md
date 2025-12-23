@@ -24,3 +24,4 @@
 ***
 
 * [Podstawy matematyczne](podstawy-matematyczne.md)
+* [Algebra regularnych serii czasowych](algebra-regularnych-serii-czasowych.md)
