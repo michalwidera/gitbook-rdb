@@ -1,5 +1,5 @@
 ---
-description: Mt 25, 14-30
+description: Dotkniesz czegoś skomplikowanego, wszystko stanie się skomplikowane.
 ---
 
 # Równanie typów w górę
