@@ -1,5 +1,5 @@
 ---
-description: Z lotu ptaka ...
+description: Widok z lotu ptaka ...
 ---
 
 # Perspektywa ogólna
