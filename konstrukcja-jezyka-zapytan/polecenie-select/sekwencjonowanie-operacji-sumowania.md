@@ -1,3 +1,9 @@
+---
+description: >-
+  Na diagramy kulkowe (ang. Marble Diagrams), po przeczytaniu pierwszej wersji
+  tego dokumentu zwrócił moją uwagę mój brat, Adam - fajne to! Dzięki Adamie!
+---
+
 # Sekwencjonowanie operacji sumowania
 
 Do systemu napływają i są przetwarzane w nim dane. Określenie kolejności ich napływu i przetwarzania możemy opisać terminem - sekwencjonowanie. Sposób w jakim zostaną dane połączone opisywany jest przez wyrażenie algebraiczne umieszczone w klauzuli FROM. Wyrażenia te zapisane są w formie szeregu operacji algebraicznych, podlegającym ścisłym regułom. Podobne reguły poznaliśmy w trakcie nauki w szkole podstawowej – były to reguły dotyczące operacji arytmetycznych w zbiorze liczb takich jak dodawanie, mnożenie dzielenie i odejmowanie.
