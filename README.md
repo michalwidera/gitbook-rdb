@@ -11,3 +11,12 @@ Kod źródłowy systemu został opublikowany na licencji MIT i znajduje się pod
 {% hint style="info" %}
 UWAGA: Polecenia opracowanego języka zapytań prezentowane są z rozbiciem na słowa kluczowe, gdzie każde słowo kluczowe jest w nowej linii. Jest to zabieg edytorski dla celów tej publikacji i ułatwienia czytelnikowi rozpoznania słów kluczowych. W rzeczywistym systemie zaimplementowałem odczyt i kompilację poleceń linia po linii. Ta funkcjonalność być może też w przyszłości może ulec zmianie.
 {% endhint %}
+
+{% hint style="success" %}
+Ta dokumentacja nie powstała w celu spełnienia jakiegoś formalnego wymagania. Ta dokumentacja powstała bo stworzone narzędzie: RetractorDB jest na tyle skomplikowane, że bez niego zrozumienie całości analizując jedynie stworzony kod wydaje mi się niewykonalne.\
+Postawiłem użytkownikom wysoki próg wejścia. Mam nadzieję że stworzony dokument ułatwi pierwszym użytkownikom zrozumienie i potencjalne zastosowanie efektów mojego wysiłku. Liczę na to że po przeczytaniu, zrobieniu kilku eksperymentów - krzykniesz: \
+"&#x45;_&#x6A;! To ciekawe! Fajne i interesujące! Przyda mi się to!"_\
+To właśnie było moją bazową motywacją. Stworzenie czegoś, co przyda się komuś, kiedyś... Bo wymyślanie koła na nowo za każdym razem to marnowanie wysiłku intelektualnego poprzednich pokoleń.  \
+Pozdrawiam,\
+Michał &#x20;
+{% endhint %}
