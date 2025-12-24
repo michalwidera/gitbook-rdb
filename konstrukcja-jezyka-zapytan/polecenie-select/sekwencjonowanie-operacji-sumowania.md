@@ -23,7 +23,7 @@ $ xretractor -c qplan1.rql -w 1:3 > out.txt
 $ swirly out.txt -o out.svg
 ```
 
-Program swirly zainstalowany został z repozytorium GitHub \[6]. Program ten służy do generacji diagramów kulkowych stosowanych w wyjaśnianiu zachowania operacji asynchronicznych RxJs \[7].
+Program swirly zainstalowany został z repozytorium GitHub \[[6](../../literatura/6.-t.d.pauw-2022.md)]. Program ten służy do generacji diagramów kulkowych stosowanych w wyjaśnianiu zachowania operacji asynchronicznych RxJs \[[7](../../literatura/7.-a.stalz-2025.md)].
 
 Modyfikację jaką zastosowałem w moim przypadku użycia to alternatywne znaczenie pionowych linii. W moim przypadku pionowe linia oddzielają jednolite interwały czasowe – prezentujące ilość cykli o które poprosiliśmy przy wywołaniu (w tym przypadku to 3 cykle). Wygenerowany obraz przedstawia Rys. 3:
 
