@@ -18,6 +18,10 @@ DO SYSTEM 'echo "test"'
 
 W pliku datafile1.txt znajdują się liczby w postaci tekstowej od 20 do 28.
 
+```
+$ seq 20 28 > datafile1.txt
+```
+
 Powyższe 3 polecenia deklarują efemeryczne źródło danych, jedno polecenie przetwarzania danych poprzez przesunięcie w czasie o jedną próbkę w czasie. Oraz regułę alarmowania. Wykonanie następującego polecenia:
 
 ```
