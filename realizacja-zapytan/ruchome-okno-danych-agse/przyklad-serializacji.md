@@ -10,11 +10,15 @@ SELECT * STREAM str3 FROM A@(1,1)
 Oraz  przygotujmy plik data3.txt o następującej zawartości:
 
 ```
-1 2
-3 4
-5 6
-7 8
-9 0
+$ seq 0 9 | paste - -
+```
+
+```
+0       1
+2       3
+4       5
+6       7
+8       9
 
 
 ```
