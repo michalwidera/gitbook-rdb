@@ -126,3 +126,7 @@ ok.
 ```
 
 Po wydaniu tego polecenia proces xretractor zakończy swoje działanie i przerwie przetwarzane planów realizacji zapytań.
+
+Zapis procesu prezentowany na ekranie przedstawia się następująco:
+
+<figure><img src="../.gitbook/assets/simple-record.gif" alt=""><figcaption></figcaption></figure>
