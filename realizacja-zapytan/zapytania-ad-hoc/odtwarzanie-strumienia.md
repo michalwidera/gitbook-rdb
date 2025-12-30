@@ -59,3 +59,7 @@ $ xqry -s core
 33
 …
 ```
+
+Nagrany przykład poniżej:
+
+<figure><img src="../../.gitbook/assets/adhoc-example.svg" alt=""><figcaption></figcaption></figure>
