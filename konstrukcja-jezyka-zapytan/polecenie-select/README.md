@@ -16,6 +16,7 @@ STREAM nazwa_budowanego_strumienia
 FROM strumieniowe_wyrażnie_algebraiczne 
 [FILE nazwa_pliku_artefaktu] 
 [RETENTION pojemoność [segmenty]]
+[VOLATILE]
 ```
 
 Osoby posługujące się językiem SQL zauważą od razu że przedstawione powyżej polecenie odbiega znacząco od tego co znają z zakresu relacyjnych baz danych.
@@ -31,3 +32,5 @@ FROM A+B
 ```
 
 Tak zbudowane zapytanie zakłada że ktoś zadeklarował strumienie A i B. Operację tą mógł wykonać za pomocą słowa kluczowego DECLARE lub innego polecenia SELECT. W oparciu tylko o wiersz zawierający zapytanie nie jesteśmy w stanie stwierdzić jak szybko dane strumienia str1 napływają. Ta informacja jest wyliczana na etapie kompilacji w oparciu o strumienie A i B i wyrażenie algebraiczne w klauzuli FROM.
+
+Klauzula VOLATILE - tworzy ulotną formę zapytania. Zapytanie z tą klauzulą przechowują tylko jeden rekord w pamięci - na dysku pojawia się tylko deskryptor opisujący strukturę danych.
