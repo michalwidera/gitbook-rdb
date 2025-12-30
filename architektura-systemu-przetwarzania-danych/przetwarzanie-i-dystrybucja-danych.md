@@ -31,6 +31,10 @@ FROM core0 + core1
 W tym przykładzie deklarujemy istnienie pliku tekstowego zawierającego dane tekstowe. Proponuję wypełnić plik datafile1.txt następującą zawartością:
 
 ```
+$ seq 20 28 > datafile1.txt
+```
+
+```
 20
 21
 22
