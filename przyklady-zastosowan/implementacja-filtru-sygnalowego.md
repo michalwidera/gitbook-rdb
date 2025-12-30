@@ -159,4 +159,4 @@ Należy pamiętać, że na ekranie komputera ten wykres przesuwa się w prawo ba
 
 Zapis ekranu w trakcie realizacji procesu przetwarzania ekranu:
 
-<figure><img src="../.gitbook/assets/dsp-record.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/dsp-record (1).gif" alt=""><figcaption></figcaption></figure>
