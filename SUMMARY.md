@@ -40,6 +40,7 @@
   * [Algorytm przeglądu drzewa zapytań](realizacja-zapytan/algorytm-przegladu-drzewa-zapytan.md)
   * [Zapytania Ad hoc](realizacja-zapytan/zapytania-ad-hoc/README.md)
     * [Przykład Ad hoc](realizacja-zapytan/zapytania-ad-hoc/przyklad-ad-hoc.md)
+    * [Odtwarzanie strumienia](realizacja-zapytan/zapytania-ad-hoc/odtwarzanie-strumienia.md)
   * [Ruchome okno danych AGSE](realizacja-zapytan/ruchome-okno-danych-agse/README.md)
     * [Przykład serializacji](realizacja-zapytan/ruchome-okno-danych-agse/przyklad-serializacji.md)
 * [Alarmowanie](alarmowanie/README.md)
