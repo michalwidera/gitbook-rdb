@@ -4,7 +4,7 @@ Kilka lat temu poszukiwałem rozszerzenia algebry przedstawionej w rozdziale o p
 
 Moje wewnętrze przeczucie wskazywało, że problem leży w samej naturze przetwarzanych liczb zespolonych. Moduł liczby zespolonej, której oba elementy są liczbami wymiernymi jest liczbą Rzeczywistą. Inaczej, długość przeciwprostokątnej w trójkącie, którego przyprostokątne są wyrażone liczbami wymiernymi – wyląduje w zbiorze liczb rzeczywistych.
 
-Sytuacja nie była komfortowa. Zacząłem przeglądać literaturę. Trafiłem na coś ciekawego – liczby Eisensteina. (Proszę zwróć uwagę – nie Einsteina tylko Eisensteina). Na Wikipedii znajdziesz artykuł pt. „Liczby całkowite Eisensteina”. Eisenstein – a tak naprawdę Ferdinand Gotthold Max Eisenstein – to niemiecki matematyk, który żył jedynie 29 lat – zostawił po sobie wkład w matematykę, który możemy wykorzystać.
+Sytuacja nie była komfortowa. Zacząłem przeglądać literaturę. Trafiłem na coś ciekawego – liczby Eisensteina. (Proszę zwróć uwagę – nie Einsteina tylko Eisensteina). Na Wikipedii znajdziesz artykuł pt. „[Liczby całkowite Eisensteina](https://pl.wikipedia.org/wiki/Liczby_ca%C5%82kowite_Eisensteina)”. Eisenstein – a tak naprawdę [Ferdinand Gotthold Max Eisenstein](https://pl.wikipedia.org/wiki/Ferdinand_Gotthold_Max_Eisenstein) – to niemiecki matematyk, który żył jedynie 29 lat – zostawił po sobie wkład w matematykę, który możemy wykorzystać.
 
 Liczby całkowite Eisensteina definiujemy w postaci:
 
