@@ -51,3 +51,4 @@
   * [Załącznik A – opcje wywołania xretractor](zalaczniki/zalacznik-a-opcje-wywolania-xretractor.md)
   * [Załącznik B - opcje wywołania xqry](zalaczniki/zalacznik-b-opcje-wywolania-xqry.md)
 * [Literatura](literatura.md)
+* [Dalsze kierunki rozwoju](dalsze-kierunki-rozwoju.md)
