@@ -46,5 +46,5 @@ Dyrektywa DISPOSABLE powstała w celu usunięcia pliku z danymi oraz jego metada
 Dyrektywa HOLD tworzy wszystko co jest potrzebne do przetwarzania danych, jednak po uruchomieniu systemu nie realizuje odczytu danych ze źródła. Dopiero po pojawieniu się pierwszego zapytania wymagającego danych z danego źródła (np. [Ad Hoc](../realizacja-zapytan/zapytania-ad-hoc/)) - realizowany jest fizyczny odczyt. Jeśli źródło nie zostanie odpytane w pętli realizacji zapytań - w systemie będą prezentowane wartości odpowiadające wartościom 0/pustym.&#x20;
 
 {% hint style="info" %}
-W dalszych planach rozwojowych konieczne jest rozbudowanie systemu RetractorDB o mechanizm wsparcia wartości NULL odpowiadającym wartościom pustym.
+W dalszych [planach rozwojowych](../dalsze-kierunki-rozwoju/arytmetyka-null.md) konieczne jest rozbudowanie systemu RetractorDB o mechanizm wsparcia wartości NULL odpowiadającym wartościom pustym.
 {% endhint %}
