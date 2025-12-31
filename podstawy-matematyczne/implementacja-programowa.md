@@ -277,3 +277,9 @@ Diff(Sum): ['1a', '2a', '3b', '4b', '5c', '6c', '7d', '8d', '9e', '10e']  deltaD
 ### Kody źródłowe
 
 Kody źródłowe przedstawionych przykładów zjadują się w repozytorium projektu w katalogu /examples/python-model/
+
+Implementacja w języku javascript możliwa do przetestowania bezpośrednio na stonie:
+
+{% embed url="https://retractordb.com/assets/interlace.html" %}
+
+{% embed url="https://retractordb.com/assets/sum.html" %}
