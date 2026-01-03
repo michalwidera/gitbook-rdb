@@ -1,5 +1,8 @@
 ---
-description: Ta nazwa systemu nie jest przypadkowa.
+description: >-
+  "W informatyce są tylko dwie trudne rzeczy: algorytm unieważniania pamięci
+  podręcznej i nadawanie nazw." - Phil Karlton. Ta nazwa systemu nie jest
+  przypadkowa.
 ---
 
 # Dlaczego wybrano taką nazwę dla systemu?
