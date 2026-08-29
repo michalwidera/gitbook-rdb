@@ -206,6 +206,9 @@ python3 gen_d_coef.py
 Plik `rec205-detect.rql` implementuje kompletny pięcioetapowy potok dla dwóch kanałów EKG (MLII i V1):
 
 ```rql
+# Okna wydzielone automatycznie z FROM mają pozostać w pamięci
+SUBSTRAT 'memory'
+
 DECLARE MLII INTEGER, V1 INTEGER STREAM ecg, 1/360 FILE 'rec205'
 DECLARE bp_coef INTEGER[25] STREAM bpf, 1 FILE 'bp_coef.txt'
 DECLARE d_coef INTEGER[5]   STREAM df,  1 FILE 'd_coef.txt'
@@ -215,25 +218,21 @@ SELECT ecg.MLII STREAM mlii FROM ecg VOLATILE
 SELECT ecg.V1   STREAM v1   FROM ecg VOLATILE
 
 # 1. Filtr pasmowoprzepustowy (5-15 Hz) — splot FIR 25-tap
-SELECT *                        STREAM mlii_win FROM mlii@(1,25)  VOLATILE
-SELECT mlii_win[_]*bpf[_]       STREAM bp_acc   FROM mlii_win+bpf VOLATILE
-SELECT bp_acc[0]/1000           STREAM bp_out   FROM SUMC(bp_acc) VOLATILE
+SELECT mlii[_]*bpf[_] STREAM bp_acc FROM mlii@(1,25)+bpf VOLATILE
+SELECT bp_acc[0]/1000 STREAM bp_out FROM SUMC(bp_acc) VOLATILE
 
 # 2. Różniczkowanie — splot FIR 5-tap
-SELECT *                        STREAM bp_win   FROM bp_out@(1,5) VOLATILE
-SELECT bp_win[_]*df[_]          STREAM d_acc    FROM bp_win+df    VOLATILE
-SELECT d_acc[0]                 STREAM d_out    FROM SUMC(d_acc)  VOLATILE
+SELECT bp_out[_]*df[_] STREAM d_acc FROM bp_out@(1,5)+df VOLATILE
+SELECT d_acc[0] STREAM d_out FROM SUMC(d_acc) VOLATILE
 
 # 3. Kwadrat (/1000 zapobiega przepełnieniu int32)
-SELECT d_out[0]^2/1000          STREAM sq_out   FROM d_out        VOLATILE
+SELECT d_out[0]^2/1000 STREAM sq_out FROM d_out VOLATILE
 
 # 4. Całkowanie ruchome 30 próbek (~83 ms)
-SELECT *                        STREAM mwi_win  FROM sq_out@(1,30) VOLATILE
-SELECT *                        STREAM mwi      FROM AVG(mwi_win)  VOLATILE
+SELECT sq_out[0] STREAM mwi FROM AVG(sq_out@(1,30)) VOLATILE
 
 # 5. Próg adaptacyjny — 2× średnia ruchoma 180 próbek (0,5 s)
-SELECT *                        STREAM mwi_long FROM mwi@(1,180)  VOLATILE
-SELECT *                        STREAM mwi_thr  FROM AVG(mwi_long) VOLATILE
+SELECT mwi[0] STREAM mwi_thr FROM AVG(mwi@(1,180)) VOLATILE
 
 # Wyjście: MLII wycentrowane, V1 wycentrowane, sygnał detekcji ×5
 SELECT mlii[0]-900, v1[0]-900, (mwi[0]-mwi_thr[0]*2)*5 \
@@ -242,9 +241,11 @@ STREAM detect_out FROM mlii+v1+mwi+mwi_thr VOLATILE
 
 #### Uzasadnienie parametrów
 
-Operator `@(1,25)` tworzy ruchome okno 25 próbek, natomiast `[_]` i `sumc` realizują splot dyskretny — patrz rozdział [Przetwarzanie symbolu \_](../kompilacja-zapytan/przetwarzanie-symbolu-_.md).
+Operator `@(1,25)` tworzy ruchome okno 25 próbek bezpośrednio w `FROM`. Indeks `mlii[_]` rozwija się zgodnie z 25 slotami, które to okno wnosi do rekordu wejściowego, a `SUMC` sumuje iloczyny z `bpf[_]`. W ten sposób splot dyskretny nie wymaga osobnego zapytania `mlii_win`. Ten sam zapis tworzy pięcioelementowy splot różniczkujący — patrz rozdział [Przetwarzanie symbolu \_](../kompilacja-zapytan/przetwarzanie-symbolu-_.md).
 
-Dzielenie `/1000` w kroku 3 kompensuje skalę całkowitoliczbową współczynników — bez tego iloczyn `d_out × d_out` osiągnąłby wartości przekraczające zakres `int32` (2 147 483 647) dla typowych amplitud EKG.
+Kompilator wydziela okna i reduktory z rozbudowanej klauzuli `FROM` jako własne substraty. `VOLATILE` dotyczy strumienia nazwanego w danym `SELECT`, nie tych automatycznych węzłów. Dyrektywa `SUBSTRAT 'memory'` utrzymuje cały potok pośredni w pamięci; bez niej wygenerowane okna korzystałyby z domyślnego składowania dyskowego.
+
+Dzielenie `bp_acc[0]/1000` w kroku 1 kompensuje skalę całkowitoliczbową współczynników filtru pasmowoprzepustowego. Drugie `/1000`, po potęgowaniu w kroku 3, ogranicza wzrost wartości; bez niego `d_out[0]^2` mógłby przekroczyć zakres `int32` (2 147 483 647) dla typowych amplitud EKG.
 
 Wyrażenie wyjściowe `(mwi[0]-mwi_thr[0]*2)*5` implementuje próg adaptacyjny: wartość jest dodatnia tylko wówczas, gdy obwiednia MWI przekracza dwukrotność bieżącej średniej ruchomej — co wskazuje na wykryty QRS. Mnożnik `×5` skaluje sygnał detekcji do zakresu wizualnie porównywalnego z surowym EKG na wykresie.
 

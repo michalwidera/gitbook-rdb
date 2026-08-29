@@ -99,16 +99,12 @@ STREAM source, 0.02 \
 FILE '/dev/urandom'
 ```
 
-W kolejnej części znajdziemy polecenia tworzące proces przetwarzania sygnałów.
+W kolejnej części znajdują się polecenia tworzące proces przetwarzania sygnałów.
 
-```
-SELECT * \
-STREAM signalRow \
-FROM source@(1,25)
-
-SELECT signalRow[_] * filter[_] \
+```rql
+SELECT source[_] * filter[_] \
 STREAM accRow \
-FROM signalRow+filter
+FROM source@(1,25)+filter
 
 SELECT accRow[0] \
 STREAM output \
@@ -119,7 +115,9 @@ STREAM outputAll \
 FROM output+source
 ```
 
-Widzimy tutaj 4 zapytania. Przeglądając rozdział dotyczący [rozwijania symbolu \_](../kompilacja-zapytan/przetwarzanie-symbolu-_.md) nie powinno na zdziwić że próba podejrzenia wyniku kompilacji tego pliku przewinie nam kilka ekranów. Możliwy do szybkiej analizy podgląd zachodzącego procesu możemy uzyskać wydając polecenie:
+Pierwsze z trzech zapytań umieszcza okno bezpośrednio w klauzuli `FROM`. Indeks `source[_]` przyjmuje szerokość 25 slotów wnoszonych przez `source@(1,25)`, dlatego kompilator tworzy 25 iloczynów z odpowiadającymi współczynnikami `filter[_]`. Nie jest potrzebny osobny, nazwany strumień okna; kompilator wydziela go jako substrat planu. Następnie `SUMC(accRow)` sumuje iloczyny, a ostatnie zapytanie łączy wynik filtru z bieżącą próbką źródła.
+
+Po rozwinięciu symbolu `[_]` plan zawiera wiele pól, więc pełny wynik kompilacji zajmuje kilka ekranów. Możliwy do szybkiej analizy podgląd procesu można uzyskać poleceniem:
 
 ```
 $ xretractor -c query.rql -p -d > out.dot && dot -Tsvg out.dot -o out.svg

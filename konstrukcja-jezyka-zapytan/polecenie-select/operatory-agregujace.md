@@ -51,12 +51,12 @@ Strumień `ma5` zawiera w każdej chwili średnią z pięciu kolejnych próbek `
 
 Fragment z przykładu implementacji filtru sygnałowego:
 
-```
-SELECT signalRow[_] * filter[_] STREAM accRow FROM signalRow+filter
+```rql
+SELECT source[_] * filter[_] STREAM accRow FROM source@(1,25)+filter
 SELECT accRow[0] STREAM output FROM SUMC(accRow)
 ```
 
-`SUMC(accRow)` sumuje wszystkie pola rekordu `accRow` (iloczyny próbek sygnału przez współczynniki filtru) produkując wyjście filtru FIR.
+Okno znajduje się bezpośrednio w `FROM`, więc nie wymaga osobnego zapytania. `source[_]` rozwija się zgodnie z 25 slotami, które `source@(1,25)` wnosi do rekordu wejściowego. `SUMC(accRow)` sumuje wszystkie pola rekordu `accRow` — iloczyny próbek sygnału przez współczynniki filtru — produkując wyjście filtru FIR.
 
 ### Przykład: MIN i MAX
 

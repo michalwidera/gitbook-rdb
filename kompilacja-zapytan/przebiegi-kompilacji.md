@@ -88,7 +88,7 @@ Sprowadza każde wyrażenie FROM do postaci co najwyżej dwuargumentowej. Złoż
 
 #### expandSchemaWildcards
 
-Rozwija symbol `*` w klauzuli SELECT oraz indeks `[_]`. Gwiazdkę zastępuje listą pól wynikających ze schematu strumienia źródłowego, a formułę z `[_]` powiela dla wszystkich zgodnych elementów. Obie operacje wykonują się podczas budowania schematów, aby kolejne operatory od razu widziały pełny układ rekordu — patrz [Rozwijanie symbolu \*](rozwijanie-symbolu.md) i [Przetwarzanie symbolu \_](przetwarzanie-symbolu-_.md).
+Rozwija symbol `*` w klauzuli SELECT oraz indeks `[_]`. Gwiazdkę zastępuje listą pól wynikających ze schematu strumienia źródłowego. Formułę z `x[_]` powiela zgodnie z liczbą slotów, które `x` wnosi do rekordu całej klauzuli `FROM`, a nie według własnej szerokości strumienia `x`. Dzięki temu jednopolowy `x` pod oknem `x@(1,5)` daje pięć elementów. Jeżeli wkład wskazanej nazwy nie tworzy w `FROM` spójnego bloku pól, kompilacja kończy się błędem zamiast przyjąć przypadkową szerokość. Obie operacje wykonują się podczas budowania schematów, aby kolejne operatory od razu widziały pełny układ rekordu — patrz [Rozwijanie symbolu \*](rozwijanie-symbolu.md) i [Przetwarzanie symbolu \_](przetwarzanie-symbolu-_.md).
 
 #### resolveStreamIntervals (← tu wykrywane są pętle)
 

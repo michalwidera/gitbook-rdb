@@ -46,7 +46,7 @@ Rozdział zbudowany jest zgodnie z kolejnością etapów kompilatora — od opis
 
 [**Aliasowanie**](aliasowanie.md) opisuje etapy `resolveFieldReferences` i `localizeFieldOffsets`. Po sumie `+` do pola wynikowego można odwołać się zarówno przez indeks w schemacie sumarycznym (`str1[1]`), jak i przez nazwę strumienia źródłowego z lokalnym indeksem (`core1[0]`). Po przeplocie `#` składowe dzielą jeden schemat, dlatego nazwane odwołania do składowych są odrzucane; należy użyć nazwy strumienia wynikowego albo rozplotu `&`/`%`.
 
-[**Przetwarzanie symbolu \_**](przetwarzanie-symbolu-_.md) opisuje etap `expandIndexWildcards` — cukier syntaktyczny do równoległych operacji na parach pól. Symbol `_` w indeksie powoduje powielenie formuły dla wszystkich par pól ze schematów obu argumentów — `core0[_] * core1[_]` przy dwupólowych schematach generuje dwa pola mnożące odpowiadające pary. Zastosowanie: budowa zapytań filtrów sygnałowych.
+[**Przetwarzanie symbolu \_**](przetwarzanie-symbolu-_.md) opisuje etap `expandIndexWildcards` — cukier syntaktyczny do równoległych operacji na parach pól. Symbol `_` w indeksie powoduje powielenie formuły dla wszystkich zgodnych slotów, które wskazany strumień wnosi do rekordu całej klauzuli `FROM`. Dlatego `src[_] * coef[_]` przy `FROM src@(1,5)+coef` generuje pięć iloczynów, mimo że sam `src` jest jednopolowy. Zastosowanie: budowa zapytań filtrów sygnałowych.
 
 [**Równanie typów w górę**](rownanie-typow-w-gore.md) definiuje reguły promocji typów obowiązujące przez cały łańcuch kompilacji. Wynik działania `BYTE * INTEGER` ma typ `INTEGER` — kompilator wyznacza typ pola wyjściowego statycznie, zanim dane zostaną przetworzone. Opisano też kompletną hierarchię typów obsługiwanych przez RetractorDB.
 
