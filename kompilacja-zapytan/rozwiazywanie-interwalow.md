@@ -73,11 +73,11 @@ deklarowanego dodatkowo dwóch na wyprzedzenie czoła (rekord uzbrojony przy
 otwarciu storage i zerowy prefetch), którego adresowanie indeksem logicznym nie
 skraca.
 
-### Agregaty okienkowe (`.max`, `.min`, `.avg`, `.sum`)
+### Reduktory strumieniowe (`MAX`, `MIN`, `AVG`, `SUMC`)
 
 \\[\Delta_c = \Delta_a\\]
 
-Agregaty redukują wartości w oknie, ale interwał strumienia wyjściowego pozostaje taki sam jak źródłowego.
+Reduktory działają na całym wyrażeniu strumieniowym, np. `AVG(a@(1,10))`. Redukują wartości w rekordzie lub oknie, ale interwał strumienia wyjściowego pozostaje taki sam jak źródłowego. Postać przyrostkowa `.max`, `.min`, `.avg`, `.sumc` jest zgodna wstecz, lecz wygaszana.
 
 ### Algorytm AGSE (`@(step, window)`, STREAM\_AGSE)
 

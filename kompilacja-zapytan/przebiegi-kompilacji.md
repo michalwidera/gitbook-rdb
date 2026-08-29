@@ -78,13 +78,17 @@ Podrozdziały o substratach i symbolu `_` używają rozszerzonych wariantów teg
 
 Łańcuch etapów definiuje funkcja `compiler::compile()`:
 
+#### expandStreamGenerators
+
+Rozwija każdy szablon `SELECT ... STREAM nazwa[N] ...` na `N` zwykłych zapytań o nazwach `nazwa$0`...`nazwa$(N-1)` i podstawia numer instancji pod `$` w polach, wartościach oraz odwołaniach klauzuli `FROM`. Jest pierwszym przebiegiem: po nim pozostała część kompilatora otrzymuje plan nieodróżnialny od ręcznie rozpisanych zapytań. Składnię i ograniczenia opisuje [Polecenie SELECT](../konstrukcja-jezyka-zapytan/polecenie-select/README.md#generatory-strumieni).
+
 #### extractIntermediateStreams
 
 Sprowadza każde wyrażenie FROM do postaci co najwyżej dwuargumentowej. Złożone wyrażenia jak `(core0#core1)+core2` oraz zapisy łańcuchowe bez nawiasów (`core0+core1+core2`, `core0#core1#core2`) wymagają pośrednich strumieni. Każde zapytanie jest redukowane do punktu stałego, więc etap obsługuje również sąsiadujące podwyrażenia jednoargumentowe, np. `(core0>2)#(core1>1)`. Etap tworzy automatycznie substraty — patrz [Substraty](substraty.md).
 
 #### expandSchemaWildcards
 
-Rozwija symbol `*` w klauzuli SELECT. Zastępuje go listą pól wynikających z schematu strumienia źródłowego — patrz [Rozwijanie symbolu \*](rozwijanie-symbolu.md).
+Rozwija symbol `*` w klauzuli SELECT oraz indeks `[_]`. Gwiazdkę zastępuje listą pól wynikających ze schematu strumienia źródłowego, a formułę z `[_]` powiela dla wszystkich zgodnych elementów. Obie operacje wykonują się podczas budowania schematów, aby kolejne operatory od razu widziały pełny układ rekordu — patrz [Rozwijanie symbolu \*](rozwijanie-symbolu.md) i [Przetwarzanie symbolu \_](przetwarzanie-symbolu-_.md).
 
 #### resolveStreamIntervals (← tu wykrywane są pętle)
 
@@ -107,24 +111,28 @@ i dowody](../podstawy-matematyczne/formalne-podstawy-i-dowody.md).
 
 Optymalizacja: jeśli dwa zapytania korzystają z tej samej operacji pośredniej (np. `core0#core1`), etap wskazuje drugie zapytanie na substrat utworzony przez pierwsze. Unika powielania obliczeń — patrz przykład w [Substraty](substraty.md).
 
+#### validateSubstratNameUniqueness
+
+Sprawdza, czy dwa substraty o tej samej nazwie opisują ten sam program. Nazwy dłuższe niż 200 bajtów są stabilnie skracane przez `composeStreamName()`, więc ta kontrola zamienia skrajnie mało prawdopodobną kolizję 64-bitowego skrótu w głośny błąd zamiast niejednoznacznego planu. Przebieg działa niezależnie od przełączników optymalizatora i następuje po deduplikacji, ponieważ przed nią identyczne duplikaty nazw są stanem przejściowym.
+
 #### resolveFieldReferences
 
 Przekształca odwołania do pól ze schematów źródłowych na indeksy w schemacie wynikowym. Obsługuje aliasowanie po sumie — `core0[0]` zamienia na `str1[0]` itp. — oraz zapamiętuje, do którego źródła została rozwiązana goła nazwa pola. Nazwane odwołania zapisane przez użytkownika są śledzone osobno, aby późniejszy przebieg nie pomylił ich z tokenami syntetyzowanymi przez kompilator. Patrz [Aliasowanie](aliasowanie.md).
-
-#### expandIndexWildcards
-
-Rozwija symbol `_` w indeksach pól. Powielenie formuły dla wszystkich pasujących par pól ze schematów argumentów — patrz [Przetwarzanie symbolu \_](przetwarzanie-symbolu-_.md).
 
 #### simplifyFieldExpressions
 
 Upraszcza programy pól `SELECT` oraz warunki `RULE` po rozwiązaniu referencji,
 ale przed współdzieleniem równoważnych obliczeń. Przebieg zwija wyrażenia
 stałe, łączy ogony stałych w arytmetyce całkowitej i wymiernej oraz usuwa
-zgodne typowo elementy neutralne (`E+0`, `E-0`, `E*1`, `E/1`).
+zgodne typowo elementy neutralne (`E+0`, `E-0`, `E*1`, `E/1`). Powtórzone
+dokładne czynniki zapisuje jako potęgę, np. `E*E*E` jako `E^3`.
 
 Przebieg zachowuje semantykę wartości `NULL` i promocję typów. Dlatego nie
 upraszcza `E*0`, nie reasocjuje `FLOAT` ani `DOUBLE` i pozostawia bez zmian
-programy, których typu lub działania nie potrafi bezpiecznie ustalić.
+programy, których typu lub działania nie potrafi bezpiecznie ustalić. Redukcja
+powtórzonego czynnika dotyczy tylko typów o dokładnym mnożeniu (`BYTE`,
+`INTEGER`, `UINT`, `RATIONAL`); dla `FLOAT` i `DOUBLE` pojedyncze mnożenie nie
+jest zastępowane wywołaniem `pow`.
 
 #### shareEquivalentSelectComputations
 

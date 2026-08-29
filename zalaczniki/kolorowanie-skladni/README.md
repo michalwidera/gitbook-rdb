@@ -39,7 +39,7 @@ SELECT str[0], str[0] / 2 STREAM str1 FROM core0
 
 _Rys. 62. Podświetlenie składni RQL w edytorze Visual Studio Code_
 
-Jak widać na Rys. 62, słowa kluczowe (`STORAGE`, `DECLARE`, `SELECT`, `FROM`) są podświetlane jako komendy, typy danych (`INTEGER`) jako typy, a komentarze zaczynające się od `#` lub `//` jako komentarze.
+Jak widać na Rys. 62, słowa kluczowe (`STORAGE`, `DECLARE`, `SELECT`, `FROM`) są podświetlane jako komendy, a typy danych (`INTEGER`) jako typy. W aktualnym RQL `#` rozpoczyna komentarz tylko jako pierwszy niebiały znak całego wiersza; wewnątrz klauzuli `FROM` zawsze jest operatorem przeplotu. Komentarz kończący wiersz zaczyna się od `//`, a komentarz blokowy ma postać `/* ... */`. Definicja kolorowania powinna zachowywać to rozróżnienie.
 
 ***
 

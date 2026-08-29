@@ -217,23 +217,23 @@ SELECT ecg.V1   STREAM v1   FROM ecg VOLATILE
 # 1. Filtr pasmowoprzepustowy (5-15 Hz) — splot FIR 25-tap
 SELECT *                        STREAM mlii_win FROM mlii@(1,25)  VOLATILE
 SELECT mlii_win[_]*bpf[_]       STREAM bp_acc   FROM mlii_win+bpf VOLATILE
-SELECT bp_acc[0]/1000           STREAM bp_out   FROM bp_acc.sumc  VOLATILE
+SELECT bp_acc[0]/1000           STREAM bp_out   FROM SUMC(bp_acc) VOLATILE
 
 # 2. Różniczkowanie — splot FIR 5-tap
 SELECT *                        STREAM bp_win   FROM bp_out@(1,5) VOLATILE
 SELECT bp_win[_]*df[_]          STREAM d_acc    FROM bp_win+df    VOLATILE
-SELECT d_acc[0]                 STREAM d_out    FROM d_acc.sumc   VOLATILE
+SELECT d_acc[0]                 STREAM d_out    FROM SUMC(d_acc)  VOLATILE
 
 # 3. Kwadrat (/1000 zapobiega przepełnieniu int32)
-SELECT d_out[0]*d_out[0]/1000   STREAM sq_out   FROM d_out        VOLATILE
+SELECT d_out[0]^2/1000          STREAM sq_out   FROM d_out        VOLATILE
 
 # 4. Całkowanie ruchome 30 próbek (~83 ms)
 SELECT *                        STREAM mwi_win  FROM sq_out@(1,30) VOLATILE
-SELECT mwi_win[0]               STREAM mwi      FROM mwi_win.avg   VOLATILE
+SELECT *                        STREAM mwi      FROM AVG(mwi_win)  VOLATILE
 
 # 5. Próg adaptacyjny — 2× średnia ruchoma 180 próbek (0,5 s)
 SELECT *                        STREAM mwi_long FROM mwi@(1,180)  VOLATILE
-SELECT mwi_long[0]              STREAM mwi_thr  FROM mwi_long.avg VOLATILE
+SELECT *                        STREAM mwi_thr  FROM AVG(mwi_long) VOLATILE
 
 # Wyjście: MLII wycentrowane, V1 wycentrowane, sygnał detekcji ×5
 SELECT mlii[0]-900, v1[0]-900, (mwi[0]-mwi_thr[0]*2)*5 \
@@ -317,4 +317,4 @@ Prawa gałąź diagramu — **Identyfikacja arytmii** — reprezentuje klasyczne
 | Detekcja VT      | Sekwencja ≥ 3 PVC z HR > 100 bpm       | RULE na strumieniu HR+PVC       |
 | Detekcja APC     | Wczesny, wąski QRS poprzedzający pauzę | morfologia MLII vs V1           |
 
-RetractorDB udostępnia operatory `RULE` oraz agregaty okienkowe (`.avg`, `.sumc`), które umożliwiają implementację powyższych metod w tym samym języku zapytań RQL, bez wychodzenia poza środowisko systemu. Detekcja QRS jest pierwszym i niezbędnym etapem tej hierarchii.
+RetractorDB udostępnia operatory `RULE` oraz reduktory okienkowe (`AVG`, `SUMC`), które umożliwiają implementację powyższych metod w tym samym języku zapytań RQL, bez wychodzenia poza środowisko systemu. Detekcja QRS jest pierwszym i niezbędnym etapem tej hierarchii.

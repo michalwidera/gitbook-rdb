@@ -226,7 +226,11 @@ Gdy kilka zapytań korzysta z tej samej operacji strumieniowej – np. `core0 + 
 
 Substrat generowany jest dla każdego zapytania, którego program zawiera więcej niż jeden operator strumieniowy. Dotyczy to operatorów: `STREAM_ADD`, `STREAM_SUBTRACT`, `STREAM_HASH`, `STREAM_DEHASH_DIV`, `STREAM_DEHASH_MOD`, `STREAM_TIMEMOVE`, `STREAM_AGSE`. Warunek sprawdza funkcja `query::isReductionRequired()`.
 
-Nowo powstałemu substratowi nadawana jest nazwa zbudowana z symbolu operacji i nazw operandów, np. `STREAM_ADD_core1_core0` (funkcja `composeStreamName` w `compiler.cpp`). W programie zapytania macierzystego token operatora zastępowany jest tokenem `PUSH_STREAM` wskazującym na ten substrat.
+Nowo powstałemu substratowi nadawana jest nazwa zbudowana z symbolu operacji, jej parametru oraz nazw operandów, np. `STREAM_ADD_core1_core0`, `STREAM_TIMEMOVE_2_core0` albo `STREAM_AGSE_1_10_core0` (funkcja `composeStreamName` w `compiler.cpp`). Parametr jest częścią tożsamości: dwa różne okna nad tym samym źródłem nie mogą otrzymać tej samej nazwy. Znaki niedozwolone w identyfikatorze są kodowane, np. liczba ujemna używa `N`, a kreska ułamkowa `_`.
+
+Czytelna nazwa rośnie wraz ze złożonością klauzuli `FROM` i jest jednocześnie nazwą pliku substratu. Po przekroczeniu 200 bajtów kompilator zachowuje nazwę operatora, a resztę zastępuje stabilnym, 16-znakowym skrótem FNV-1a, np. `STREAM_ADD_x92741c15f69ba93f`. Dzięki temu szerokie wyrażenie nie przekracza systemowego `NAME_MAX`; ta sama struktura planu zawsze dostaje tę samą nazwę, a inna kolejność operandów daje inny skrót. `validateSubstratNameUniqueness()` zatrzymuje kompilację, gdyby jeden skrót kiedykolwiek oznaczał dwa różne programy.
+
+W programie zapytania macierzystego token operatora zastępowany jest tokenem `PUSH_STREAM` wskazującym na substrat.
 
 ### Prawo wynoszenia wspólnego przesunięcia czasu przed przeplot
 
@@ -279,9 +283,9 @@ i dowody](../podstawy-matematyczne/formalne-podstawy-i-dowody.md).
 Przed optymalizacją plan zawiera dwa substraty:
 
 ```
-STREAM_TIMEMOVE_A = A > i
-STREAM_TIMEMOVE_B = B > k
-result = STREAM_TIMEMOVE_A # STREAM_TIMEMOVE_B
+STREAM_TIMEMOVE_i_A = A > i
+STREAM_TIMEMOVE_k_B = B > k
+result = STREAM_TIMEMOVE_i_A # STREAM_TIMEMOVE_k_B
 ```
 
 Po optymalizacji pozostaje jeden:
@@ -332,26 +336,29 @@ Jeśli wszystkie warunki są spełnione, substrat `it` uznawany jest za duplikat
 
 ### Miejsce w potoku kompilacji
 
-Deduplikacja jest piątym krokiem potoku (funkcja `compiler::compile()`):
+Deduplikacja jest szóstym krokiem potoku (funkcja `compiler::compile()`):
 
 ```
-1. extractIntermediateStreams   – wyodrębnienie substratów
-2. expandSchemaWildcards        – rozwinięcie symboli wieloznacznych w schematach
-3. resolveStreamIntervals       – obliczenie interwałów czasowych
-4. factorMatchedHashTimeMoves   – prawo wynoszenia wspólnego przesunięcia czasu przed przeplot
-5. deduplicateSubstrats         – eliminacja duplikatów  ← ten krok
-6. resolveFieldReferences       – rozwiązanie referencji do pól
-7. expandIndexWildcards         – rozwinięcie indeksów wieloznacznych
-8. shareEquivalentSelectComputations – współdzielenie równoważnych obliczeń SELECT
-9. localizeFieldOffsets         – wyznaczenie przesunięć pól
-10. computeStartupLatency       – obliczenie ogonów startowych
-11. computeRequiredCapacities   – obliczenie wymaganej historii
-12. validateConstraints         – kontrola ograniczeń operatorów
-13. applyCapacitiesToStreams    – zastosowanie pojemności
-14. topologicalSort             – końcowy porządek producent–konsument
+1. expandStreamGenerators       – rozwinięcie rodzin strumieni
+2. extractIntermediateStreams   – wyodrębnienie substratów
+3. expandSchemaWildcards        – rozwinięcie `*` oraz `[_]`
+4. resolveStreamIntervals       – obliczenie interwałów czasowych
+5. factorMatchedHashTimeMoves   – prawo wynoszenia wspólnego przesunięcia czasu przed przeplot
+6. deduplicateSubstrats         – eliminacja duplikatów  ← ten krok
+7. validateSubstratNameUniqueness – kontrola jednoznaczności nazw
+8. resolveFieldReferences       – rozwiązanie referencji do pól
+9. simplifyFieldExpressions     – uproszczenie programów pól i reguł
+10. shareEquivalentSelectComputations – współdzielenie równoważnych obliczeń SELECT
+11. localizeFieldOffsets        – wyznaczenie przesunięć pól
+12. computeLogicalOrigin        – wyznaczenie początku logicznego
+13. computeStartupLatency       – obliczenie ogonów startowych
+14. computeRequiredCapacities   – obliczenie wymaganej historii
+15. validateConstraints         – kontrola ograniczeń operatorów
+16. applyCapacitiesToStreams    – zastosowanie pojemności
+17. topologicalSort             – końcowy porządek producent–konsument
 ```
 
-Wyniesienie wspólnego przesunięcia czasu przed przeplot i deduplikacja muszą nastąpić po kroku 3, ponieważ obie operacje porównują interwały. Deduplikacja następuje po przepisaniu algebraicznym, aby mogła scalać ujawnione przez nie substraty przeplotu.
+Wyniesienie wspólnego przesunięcia czasu przed przeplot i deduplikacja muszą nastąpić po rozwiązaniu interwałów, ponieważ obie operacje je porównują. Deduplikacja następuje po przepisaniu algebraicznym, aby mogła scalać ujawnione przez nie substraty przeplotu.
 
 Współdzielenie obliczeń `SELECT` następuje dopiero po rozwiązaniu referencji i rozwinięciu `[_]`, ponieważ porównuje gotowe programy pól. Musi jednak poprzedzać lokalizację offsetów, aby równoważne źródła nie wyglądały na różne wyłącznie z powodu kolejności w lokalnym buforze wejściowym.
 

@@ -6,6 +6,8 @@ RQL to skrót od _RetractorDB Query Language_. Jego składnia jest bardzo podobn
 
 Poprawne zdania w języku RQL na chwilę obecną zaczynają się od kilku słów kluczowych. Najbardziej rozpoznawalne to polecenie zaczynające się od słowa kluczowego SELECT za którym występuje lista atrybutów w postaci wyrażeń algebraicznych. Algebry opartej na liczbach rzeczywistych.
 
-Polecenia zapisuje się w pliku tekstowym. Jego rozszerzenie to zwyczajowo .rql ale dowolne inne też zostanie przyjęte i przetworzone. Plik tekstowy języka RQL zawiera ciąg poleceń zaczynających się od zdefiniowanych słów kluczowych. Komentarze poprzedza się znakiem #.
+Polecenia zapisuje się w pliku tekstowym. Jego rozszerzenie to zwyczajowo .rql ale dowolne inne też zostanie przyjęte i przetworzone. Plik tekstowy języka RQL zawiera ciąg poleceń zaczynających się od zdefiniowanych słów kluczowych.
+
+Znak `#` rozpoczyna komentarz tylko wtedy, gdy jest pierwszym niebiałym znakiem wiersza. Cały taki wiersz, także wcięty, jest pomijany przed parsowaniem. W wyrażeniu `FROM` znak `#` zawsze oznacza przeplot, niezależnie od spacji. Komentarz na końcu wiersza rozpoczyna się od `//`; dostępne są również komentarze blokowe `/* ... */`.
 
 Język zapytań został zaimplementowany przy pomocy generatora parserów Antlr4 \[[5](../literatura.md#5)]. Gramatyka języka RQL została zapisana, zdefiniowana i po każdej modyfikacji jest kompilowana do języka w którym stworzono system RetractorDB. Każde zdanie pliku zbioru zapytań nie będące komentarzem jest kompilowane, przetwarzane i modyfikuje wewnętrzny stan systemu. Zdanie może zajmować wiele wierszy — kontynuację wiersza sygnalizuje znak `\` na jego końcu.

@@ -17,7 +17,7 @@
     * [Sekwencjonowanie operacji przeplotu](konstrukcja-jezyka-zapytan/polecenie-select/sekwencjonowanie-operacji-przeplotu.md)
     * [Klauzula VOLATILE](konstrukcja-jezyka-zapytan/polecenie-select/klauzula-volatile.md)
     * [Typy STORAGE](konstrukcja-jezyka-zapytan/polecenie-select/typy-storage.md)
-    * [Operatory agregujące i to\_string](konstrukcja-jezyka-zapytan/polecenie-select/operatory-agregujace.md)
+    * [Operatory agregujące i funkcje wyrażeń](konstrukcja-jezyka-zapytan/polecenie-select/operatory-agregujace.md)
   * [Polecenie RULE](konstrukcja-jezyka-zapytan/polecenie-rule.md)
     * [Konstrukcja mechanizmu](konstrukcja-jezyka-zapytan/polecenie-rule/alarmowanie.md)
     * [Warunek logiczny](konstrukcja-jezyka-zapytan/polecenie-rule-warunek-logiczny.md)

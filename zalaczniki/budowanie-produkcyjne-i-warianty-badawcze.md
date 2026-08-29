@@ -162,7 +162,10 @@ skutecznych przekształceń
 węzłów `STREAM_ADD`, w których kanoniczny odcisk planu rzeczywiście zamienił
 kolejność dzieci. `r3` oznacza liczbę uproszczeń programów pól i warunków
 `RULE`: zwinięć stałych, połączeń ogonów stałych i usuniętych elementów
-neutralnych. Liczniki opisują zastosowane przepisania, a nie przyspieszenie.
+neutralnych, a także zastąpień powtórzonego dokładnego czynnika potęgą
+(`E*E*E -> E^3`). Ostatnia reguła obejmuje tylko typy `BYTE`, `INTEGER`,
+`UINT` i `RATIONAL`; nie przepisuje mnożenia `FLOAT` ani `DOUBLE`. Liczniki
+opisują zastosowane przepisania, a nie przyspieszenie.
 Przy `RDB_BENCH_PROBE=OFF` kod liczników nie trafia do binarki i wiersz
 `REWRITE_APPLIED` nie jest emitowany.
 

@@ -7,10 +7,10 @@ Operatory agregujące działają na strumieniu posiadającym wiele pól — typo
 ### Składnia
 
 ```
-FROM strumień.agregator
+FROM AGREGATOR(wyrażenie_strumieniowe)
 ```
 
-gdzie `agregator` to jedno z:
+gdzie `AGREGATOR` to jedno z:
 
 | Słowo kluczowe | Działanie |
 |----------------|-----------|
@@ -19,7 +19,15 @@ gdzie `agregator` to jedno z:
 | `avg`  / `AVG` | średnia arytmetyczna pól rekordu |
 | `sumc` / `SUMC`| suma wszystkich pól rekordu |
 
-Słowa kluczowe akceptowane są zarówno małymi, jak i wielkimi literami.
+Słowa kluczowe akceptowane są zarówno małymi, jak i wielkimi literami. Są zastrzeżone, dlatego strumień nie może nazywać się `min`, `MAX`, `avg` ani `SUMC`.
+
+Argumentem może być całe wyrażenie strumieniowe, nie tylko pojedyncza nazwa. Dzięki temu okno i redukcję można zapisać bez pomocniczego zapytania:
+
+```rql
+SELECT * STREAM total FROM SUMC(src@(1,5))
+```
+
+Postać przyrostkowa `strumień.min`, `.max`, `.avg` i `.sumc` pozostaje zgodna wstecz, ale jest wygaszana. Parser emituje ostrzeżenie i zaleca postać funkcyjną. Dotychczasowy zapis `src@(1,5).sumc` jest poprawny, lecz nowe zapytania powinny używać `SUMC(src@(1,5))`.
 
 ### Interwał wyjściowy
 
@@ -33,10 +41,8 @@ Agregaty nie zmieniają częstotliwości strumienia — interwał wyniku jest ta
 DECLARE val INTEGER STREAM src, 1 FILE 'data.txt'
 
 -- okno 5-elementowe przesuwane o 1
-SELECT * STREAM win5 FROM src@(1,5)
-
--- średnia z 5 ostatnich wartości
-SELECT win5[0] STREAM ma5 FROM win5.avg
+-- średnia z okna 5-elementowego przesuwanego o 1
+SELECT * STREAM ma5 FROM AVG(src@(1,5))
 ```
 
 Strumień `ma5` zawiera w każdej chwili średnią z pięciu kolejnych próbek `src`.
@@ -47,19 +53,17 @@ Fragment z przykładu implementacji filtru sygnałowego:
 
 ```
 SELECT signalRow[_] * filter[_] STREAM accRow FROM signalRow+filter
-SELECT accRow[0] STREAM output FROM accRow.sumc
+SELECT accRow[0] STREAM output FROM SUMC(accRow)
 ```
 
-`accRow.sumc` sumuje wszystkie pola rekordu `accRow` (iloczyny próbek sygnału przez współczynniki filtru) produkując wyjście filtru FIR.
+`SUMC(accRow)` sumuje wszystkie pola rekordu `accRow` (iloczyny próbek sygnału przez współczynniki filtru) produkując wyjście filtru FIR.
 
 ### Przykład: MIN i MAX
 
 ```
 DECLARE v INTEGER STREAM src, 0.1 FILE '/dev/urandom'
-SELECT * STREAM win10 FROM src@(1,10)
-
-SELECT win10[0] STREAM min10 FROM win10.min
-SELECT win10[0] STREAM max10 FROM win10.max
+SELECT * STREAM min10 FROM MIN(src@(1,10))
+SELECT * STREAM max10 FROM MAX(src@(1,10))
 ```
 
 > **_NOTE:_** Opisana funkcjonalność ma pokrycie w testach: `simple_max`, `Pattern4` opisanych w załączniku pt. [Testy Integracyjne](../../zalaczniki/testy-integracyjne.md).

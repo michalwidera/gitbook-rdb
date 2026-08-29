@@ -388,6 +388,14 @@ class Parser:
         return ("seq",) + tuple(elems)
 
     def parse_element(self):
+        # Opcje elementu ANTLR (np. <assoc=right>) sterują parserem, ale nie
+        # zmieniają kształtu elementu na diagramie. Pomijamy je przed atomem.
+        if self.peek() == "<":
+            self.next()
+            while self.peek() not in (None, ">"):
+                self.next()
+            self.expect(">")
+
         label = None
         if self.peek(1) == "=":
             label = self.next()
