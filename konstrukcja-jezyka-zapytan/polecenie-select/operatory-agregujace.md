@@ -35,6 +35,19 @@ Agregaty nie zmieniają częstotliwości strumienia — interwał wyniku jest ta
 
 \\[\Delta_{wynik} = \Delta_{strumień}\\]
 
+### Typ wyniku
+
+Wszystkie cztery reduktory dają pole typu `RATIONAL`, niezależnie od typu pól wejściowych.
+Dotyczy to także `MIN` i `MAX`, które zwracają wartość obecną w rekordzie, oraz przypadku,
+w którym wynik jest liczbą całkowitą — średnia z trzech siódemek to pole `RATIONAL`
+o wartości `7/1`, a nie pole `INTEGER`.
+
+Wybór typu nie jest kosmetyczny: rachunek redukcji idzie po liczbach wymiernych, więc
+`AVG` nie traci reszty z dzielenia, a wynik pozostaje dokładny. Kosztem jest to, że
+artefakt z agregatem wymaga od czytelnika znajomości układu pary licznik-mianownik
+(→ [Układ pola RATIONAL](../../architektura-systemu-przetwarzania-danych/format-zapisu-danych/pliki.md#układ-pola-rational))
+albo przepuszczenia wartości przez `to_string`, `to_double` lub `to_integer`.
+
 ### Przykład: średnia ruchoma
 
 ```
@@ -113,3 +126,69 @@ Rozmiar pola wynikowego: 8 (z `to_string`) + 3 (literal `_ok`) = 11 bajtów.
 `to_string` przydaje się przy eksporcie do systemów przyjmujących dane tekstowe (Graphite, InfluxDB przez `xqry`) lub przy tworzeniu etykiet zdarzeń łączonych z wyjściem `DO DUMP`.
 
 > **_NOTE:_** Opisana funkcjonalność ma pokrycie w testach: `issue121_isnull`, `issue128_numeric_to_string`, `issue128_string_to_numeric` opisanych w załączniku pt. [Testy Integracyjne](../../zalaczniki/testy-integracyjne.md).
+
+---
+
+## Funkcja to_integer
+
+Funkcja `to_integer` konwertuje wyrażenie liczbowe na pole typu `INTEGER`. Jest podstawową
+drogą odczytu artefaktu z agregatem: pole `RATIONAL` zamienia na liczbę całkowitą, którą
+czytelnik odczyta bez znajomości układu pary licznik-mianownik.
+
+### Składnia
+
+```
+to_integer(wyrażenie)
+```
+
+### Zaokrąglenie
+
+> **⚠️ Ostrzeżenie**
+>
+> `to_integer` **obcina w stronę zera**, a nie podłoguje. Dla wartości ujemnych wynik różni
+> się od podłogi o jeden.
+
+Reguła jest ta sama dla argumentu wymiernego i zmiennoprzecinkowego — w obu przypadkach
+część ułamkowa jest odrzucana, a znak zachowany:
+
+| Wartość wejściowa | `to_integer` | podłoga (dla porównania) |
+| ----------------- | ------------ | ------------------------ |
+| `8/3`             | `2`          | `2`                      |
+| `-8/3`            | `-2`         | `-3`                     |
+| `-4/3`            | `-1`         | `-2`                     |
+| `-2.6666…`        | `-2`         | `-3`                     |
+
+Wartość `NULL` przechodzi przez funkcję bez zmiany — `to_integer(NULL)` daje `NULL`, a nie zero.
+
+### Pułapka przy przenoszeniu na Pythona
+
+Operator `//` w Pythonie **podłoguje**, więc naiwne przepisanie zapytania rozjeżdża się
+z silnikiem na każdej wartości ujemnej:
+
+```python
+>>> -8 // 3        # Python: podłoga
+-3
+>>> int(-8 / 3)    # to samo, co robi to_integer
+-2
+```
+
+Model odtwarzający zachowanie silnika musi liczyć średnią obciętą jawnie:
+
+```python
+def truncated_mean(values):
+    """Obcięcie w stronę zera, tak jak rzutowanie średniej wymiernej."""
+    total = sum(values)
+    quotient = abs(total) // len(values)
+    return quotient if total >= 0 else -quotient
+```
+
+Ten sam problem dotyczy każdego języka, w którym dzielenie całkowite podłoguje.
+
+### Zastosowanie
+
+`to_integer` jest właściwe tam, gdzie odbiorca artefaktu ma przyjąć liczbę całkowitą i część
+ułamkowa nie jest potrzebna. Tam, gdzie wartość ma pozostać dokładna, właściwe jest
+`to_string`, które zapisuje ułamek jako tekst `licznik/mianownik`, albo odczyt pary wprost
+(→ [Układ pola RATIONAL](../../architektura-systemu-przetwarzania-danych/format-zapisu-danych/pliki.md#układ-pola-rational)).
+
+> **_NOTE:_** Opisana funkcjonalność ma pokrycie w testach: `issue128_string_to_numeric` opisanym w załączniku pt. [Testy Integracyjne](../../zalaczniki/testy-integracyjne.md), oraz w testach jednostkowych `ut_payload` i `ut_convertTypes`, przypinających układ pola `RATIONAL` i regułę zaokrąglenia.

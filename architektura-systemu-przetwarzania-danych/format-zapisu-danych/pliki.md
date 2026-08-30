@@ -24,7 +24,7 @@ INTEGER  nazwa [N]          # 32-bitowe liczby całkowite ze znakiem
 UINT     nazwa [N]          # 32-bitowe bez znaku
 FLOAT    nazwa [N]          # 32-bitowe zmiennoprzecinkowe (IEEE 754)
 DOUBLE   nazwa [N]          # 64-bitowe zmiennoprzecinkowe
-RATIONAL nazwa [N]          # para int64: licznik i mianownik
+RATIONAL nazwa [N]          # para int32: licznik i mianownik
 STRING   nazwa [rozmiar]    # ciąg znaków o stałej długości
 REF      "ścieżka/plik"     # referencja do zewnętrznego pliku deskryptora
 TYPE     identyfikator      # typ składowania (DEFAULT, MEMORY, POSIXSHD, …)
@@ -86,12 +86,82 @@ RETMEMORY pojemność         # retencja cykliczna w pamięci
 | `UINT`     | 4 B                          |
 | `FLOAT`    | 4 B                          |
 | `DOUBLE`   | 8 B                          |
-| `RATIONAL` | 16 B (dwa int64)             |
+| `RATIONAL` | 8 B (dwa int32)              |
 | `STRING`   | N B (deklarowany rozmiar)    |
 
 Dla pól tablicowych `nazwa[N]` całkowity rozmiar = rozmiar_typu × N. Pola `TYPE`, `REF`, `RETENTION` i `RETMEMORY` nie zajmują miejsca w rekordzie — są metadanymi deskryptora.
 
 Rozmiar rekordu `R` = suma rozmiarów wszystkich pól danych.
+
+### Układ pola RATIONAL
+
+Pole `RATIONAL` przechowuje liczbę wymierną jako parę liczb całkowitych ze znakiem,
+zapisaną w rekordzie wprost, bez nagłówka i bez znacznika typu:
+
+```
+offset +0   int32   licznik
+offset +4   int32   mianownik
+```
+
+Kolejność bajtów jest natywna dla maszyny — na x86-64 i ARM64 little-endian, tak samo
+jak dla pól `INTEGER` i `UINT`. Pole zajmuje 8 bajtów; dla pola tablicowego
+`RATIONAL nazwa[N]` pary leżą jedna za drugą, `8 × N` bajtów.
+
+Wartość jest zawsze zapisana w **postaci nieskracalnej**, a mianownik jest zawsze
+**dodatni** — znak liczby niesie wyłącznie licznik. Wynika to z arytmetyki
+`boost::rational`, która normalizuje wynik przy każdym przypisaniu, a nie z konwencji
+zapisu. W szczególności:
+
+* zero zapisuje się jako `0/1`, nigdy jako `0/0` ani `0/5`;
+* liczba całkowita zapisuje się jako `n/1` — pole `RATIONAL` o mianowniku 1 to
+  dokładnie liczba całkowita, bez zaokrągleń (na tym niezmienniku opiera się też test
+  podzielności slotu w [algorytmie przeglądu drzewa zapytań](../../realizacja-zapytan/algorytm-przegladu-drzewa-zapytan.md));
+* mianownik nigdy nie jest zerem, więc czytelnik nie musi tego przypadku obsługiwać.
+
+Pola typu `RATIONAL` produkują reduktory `MIN`, `MAX`, `AVG` i `SUMC` — zarówno w postaci
+funkcyjnej, jak i w wygaszanej notacji przyrostkowej `.min`, `.max`, `.avg`, `.sumc`
+(→ [Operatory agregujące](../../konstrukcja-jezyka-zapytan/polecenie-select/operatory-agregujace.md)).
+Reduktor jest w praktyce jedynym źródłem tego typu w artefakcie.
+
+#### Przykład zmierzony
+
+Plan liczący średnią z okna trzech próbek:
+
+```rql
+DECLARE v INTEGER STREAM src, 1 FILE 'data.txt'
+
+SELECT * STREAM ravg FROM AVG(src@(1,3))
+```
+
+dla wejścia `-3, -3, -2, 7, 7, 7, …` daje deskryptor `{ RATIONAL avg }` i plik danych,
+w którym pierwszy rekord ma osiem bajtów:
+
+```
+f8 ff ff ff   03 00 00 00
+└─ licznik ─┘ └ mianownik ┘
+   -8            3            →  -8/3
+```
+
+Czwarty rekord to `07 00 00 00 01 00 00 00`, czyli `7/1` — średnia z trzech siódemek
+zapisana jako liczba wymierna o mianowniku 1, a nie jako `INTEGER`.
+
+#### Odczyt bez rozbierania bajtów
+
+Układ pary trzeba znać tylko przy czytaniu pliku binarnego wprost. Sam fakt, że pole jest
+typu `RATIONAL` i zajmuje 8 bajtów, wypisuje `xtrdb -s nazwa` z deskryptora
+(→ [Narzędzie inspekcji](narzedzie-inspekcji.md)) — narzędzie pokazuje strukturę, nie wartości.
+Wartość odczytuje się natomiast, przepuszczając pole przez konwersję już w zapytaniu; trzy
+funkcje dają trzy różne kompromisy:
+
+| Zapis w SELECT | Wynik dla `-8/3` | Uwaga |
+| -------------- | ---------------- | ----- |
+| `to_string(pole : N)` | napis `-8/3` w polu `STRING[N]` | postać dokładna; liczba całkowita wychodzi jako `7/1`, nie `7` |
+| `to_double(pole)` | pole `DOUBLE` o wartości `-2.6666…` | przybliżenie, ale bez utraty znaku i rzędu wielkości |
+| `to_integer(pole)` | pole `INTEGER` o wartości `-2` | **obcięcie w stronę zera**, nie podłoga — → [Operatory agregujące](../../konstrukcja-jezyka-zapytan/polecenie-select/operatory-agregujace.md) |
+
+Do eksportu do systemów tekstowych właściwe jest `to_string`, bo zachowuje wartość
+dokładnie; `to_integer` jest wygodne, ale gubi część ułamkową i robi to inaczej, niż
+podłoguje Python — opis zaokrąglenia jest przy funkcjach wyrażeń.
 
 ### Pole TYPE a strategia składowania
 
