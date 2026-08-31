@@ -118,10 +118,13 @@ zapisu. W szczególności:
   podzielności slotu w [algorytmie przeglądu drzewa zapytań](../../realizacja-zapytan/algorytm-przegladu-drzewa-zapytan.md));
 * mianownik nigdy nie jest zerem, więc czytelnik nie musi tego przypadku obsługiwać.
 
-Pola typu `RATIONAL` produkują reduktory `MIN`, `MAX`, `AVG` i `SUMC` — zarówno w postaci
-funkcyjnej, jak i w wygaszanej notacji przyrostkowej `.min`, `.max`, `.avg`, `.sumc`
+Pola typu `RATIONAL` produkują reduktory `MIN`, `MAX`, `AVG` i `SUMC`, gdy wartość wejściowa
+ma typ `BYTE`, `INTEGER`, `UINT` albo `RATIONAL`. Dotyczy to reduktorów bieżącego rekordu w
+`FROM`, wygaszanej notacji `.min`/`.max`/`.avg`/`.sumc` oraz agregatów historii
+`AGG(wyrażenie : W)` w liście `SELECT`. Wejście `FLOAT` lub `DOUBLE` zachowuje własny typ
 (→ [Operatory agregujące](../../konstrukcja-jezyka-zapytan/polecenie-select/operatory-agregujace.md)).
-Reduktor jest w praktyce jedynym źródłem tego typu w artefakcie.
+Reduktor nad wejściem całkowitym lub wymiernym jest w praktyce głównym źródłem typu
+`RATIONAL` w artefakcie.
 
 #### Przykład zmierzony
 
@@ -157,7 +160,7 @@ funkcje dają trzy różne kompromisy:
 | -------------- | ---------------- | ----- |
 | `to_string(pole : N)` | napis `-8/3` w polu `STRING[N]` | postać dokładna; liczba całkowita wychodzi jako `7/1`, nie `7` |
 | `to_double(pole)` | pole `DOUBLE` o wartości `-2.6666…` | przybliżenie, ale bez utraty znaku i rzędu wielkości |
-| `to_integer(pole)` | pole `INTEGER` o wartości `-2` | **obcięcie w stronę zera**, nie podłoga — → [Operatory agregujące](../../konstrukcja-jezyka-zapytan/polecenie-select/operatory-agregujace.md) |
+| `to_integer(pole)` | pole `INTEGER` o wartości `-2` | **obcięcie w stronę zera**, nie podłoga — → [Wyrażenia pól i funkcje skalarne](../../konstrukcja-jezyka-zapytan/polecenie-select/wyrazenia-pol-i-funkcje-skalarne.md) |
 
 Do eksportu do systemów tekstowych właściwe jest `to_string`, bo zachowuje wartość
 dokładnie; `to_integer` jest wygodne, ale gubi część ułamkową i robi to inaczej, niż
