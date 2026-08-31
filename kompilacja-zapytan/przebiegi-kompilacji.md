@@ -78,9 +78,22 @@ Podrozdziały o substratach i symbolu `_` używają rozszerzonych wariantów teg
 
 Łańcuch etapów definiuje funkcja `compiler::compile()`:
 
+#### checkFunctionCalls
+
+Sprawdza nazwy i arność funkcji skalarnych względem jednej tabeli `rqlFunctions.hpp`.
+Dopasowanie ignoruje wielkość liter, a do tokena trafia postać kanoniczna nazwy. Nieznana
+funkcja lub niedozwolona szerokość kończy kompilację komunikatem `Check result:` jeszcze
+przed rozwinięciem generatorów, więc jeden błąd szablonu nie jest powielany N razy.
+
 #### expandStreamGenerators
 
 Rozwija każdy szablon `SELECT ... STREAM nazwa[N] ...` na `N` zwykłych zapytań o nazwach `nazwa$0`...`nazwa$(N-1)` i podstawia numer instancji pod `$` w polach, wartościach oraz odwołaniach klauzuli `FROM`. Jest pierwszym przebiegiem: po nim pozostała część kompilatora otrzymuje plan nieodróżnialny od ręcznie rozpisanych zapytań. Składnię i ograniczenia opisuje [Polecenie SELECT](../konstrukcja-jezyka-zapytan/polecenie-select/README.md#generatory-strumieni).
+
+#### snapshotNamedSourceRefs
+
+Zapamiętuje referencje źródłowe zapisane przez użytkownika przed tworzeniem substratów.
+Późniejsza lokalizacja pól używa tej migawki, aby odróżnić legalne tokeny syntetyczne od
+odwołań do składowej przeplotu `#`, której tożsamości wynik już nie zachowuje.
 
 #### extractIntermediateStreams
 
@@ -88,11 +101,17 @@ Sprowadza każde wyrażenie FROM do postaci co najwyżej dwuargumentowej. Złoż
 
 #### expandSchemaWildcards
 
-Rozwija symbol `*` w klauzuli SELECT oraz indeks `[_]`. Gwiazdkę zastępuje listą pól wynikających ze schematu strumienia źródłowego. Formułę z `x[_]` powiela zgodnie z liczbą slotów, które `x` wnosi do rekordu całej klauzuli `FROM`, a nie według własnej szerokości strumienia `x`. Dzięki temu jednopolowy `x` pod oknem `x@(1,5)` daje pięć elementów. Jeżeli wkład wskazanej nazwy nie tworzy w `FROM` spójnego bloku pól, kompilacja kończy się błędem zamiast przyjąć przypadkową szerokość. Obie operacje wykonują się podczas budowania schematów, aby kolejne operatory od razu widziały pełny układ rekordu — patrz [Rozwijanie symbolu \*](rozwijanie-symbolu.md) i [Przetwarzanie symbolu \_](przetwarzanie-symbolu-_.md).
+Rozwija symbol `*` w klauzuli SELECT oraz indeks `[_]`. Gwiazdkę zastępuje listą pól wynikających ze schematu strumienia źródłowego. Formułę z `x[_]` powiela zgodnie z liczbą slotów, które `x` wnosi do rekordu całej klauzuli `FROM`, a nie według własnej szerokości strumienia `x`. Dzięki temu jednopolowy `x` pod oknem `x@(1,5)` daje pięć elementów. Jeżeli wkład wskazanej nazwy nie tworzy w `FROM` spójnego bloku pól, kompilacja kończy się błędem zamiast przyjąć przypadkową szerokość.
+
+Na tym etapie schematy pochodne rozwijają liczbowy wpis `T[N]` do N pól skalarnych.
+Deskryptor deklaracji nadal zachowuje jeden wpis tablicowy, a układ bajtów i kolejność
+płaskich slotów nie zmieniają się. `STRING[N]` pozostaje jednym polem tekstowym. Dzięki temu
+operatory pochodne, reduktory, AGSE i payload używają tej samej jednostki indeksowania.
+Patrz [Rozwijanie symbolu \*](rozwijanie-symbolu.md) i [Przetwarzanie symbolu \_](przetwarzanie-symbolu-_.md).
 
 #### resolveStreamIntervals (← tu wykrywane są pętle)
 
-Wyznacza interwał czasowy (delta) każdego strumienia na podstawie operatorów algebraicznych i interwałów strumieni wejściowych. Algorytm iteracyjny — w każdej rundzie rozwiązuje tyle strumieni, ile jest możliwe. Wykrywa cykliczne zależności zatrzymując się, gdy liczba nierozwiązanych strumieni przestaje maleć — patrz [Rozwiązywanie interwałów](rozwiazywanie-interwalow.md) i [Wykrywanie pętli](wykrywanie-petli.md).
+Wyznacza interwał czasowy (delta) każdego strumienia na podstawie operatorów algebraicznych i interwałów strumieni wejściowych. Algorytm iteracyjny — w każdej rundzie rozwiązuje tyle strumieni, ile jest możliwe. Agregat okna rekordowego w liście `SELECT` nie zmienia interwału i wymaga pojedynczego odwołania do strumienia w `FROM`; złożona klauzula jest tutaj odrzucana. Etap wykrywa cykliczne zależności zatrzymując się, gdy liczba nierozwiązanych strumieni przestaje maleć — patrz [Rozwiązywanie interwałów](rozwiazywanie-interwalow.md) i [Wykrywanie pętli](wykrywanie-petli.md).
 
 #### factorMatchedHashTimeMoves
 
@@ -117,11 +136,34 @@ Sprawdza, czy dwa substraty o tej samej nazwie opisują ten sam program. Nazwy d
 
 #### resolveFieldReferences
 
-Przekształca odwołania do pól ze schematów źródłowych na indeksy w schemacie wynikowym. Obsługuje aliasowanie po sumie — `core0[0]` zamienia na `str1[0]` itp. — oraz zapamiętuje, do którego źródła została rozwiązana goła nazwa pola. Nazwane odwołania zapisane przez użytkownika są śledzone osobno, aby późniejszy przebieg nie pomylił ich z tokenami syntetyzowanymi przez kompilator. Patrz [Aliasowanie](aliasowanie.md).
+Przekształca odwołania do pól ze schematów źródłowych na indeksy płaskie w schemacie wynikowym. Obsługuje aliasowanie po sumie — `core0[0]` zamienia na `str1[0]` itp. — oraz zapamiętuje, do którego źródła została rozwiązana goła nazwa pola. Nazwane odwołania zapisane przez użytkownika są śledzone osobno, aby późniejszy przebieg nie pomylił ich z tokenami syntetyzowanymi przez kompilator. Goła nazwa liczbowej tablicy jest odrzucana: `a` nie znaczy `a[0]`; trzeba podać element. Patrz [Aliasowanie](aliasowanie.md).
+
+#### resolveWindowAggregates
+
+Wyodrębnia program argumentu każdego `MIN`/`MAX`/`AVG`/`SUMC(wyrażenie : W)` z listy
+`SELECT` do tabeli `query::windowGroups`. Sprawdza dodatnią szerokość, typ liczbowy, jedno
+źródło historii, obecność odwołania do pola oraz zakazy zagnieżdżania i użycia w `RULE`.
+Identyczne trójki źródło–wyrażenie–szerokość współdzielą grupę i jedno przejście po historii.
+Token agregatu staje się bezargumentowym operandem wskazującym obliczony wynik grupy.
+
+#### propagateCopiedFieldShapes
+
+Przenosi ustalony typ wyniku agregatu okna przez węzły, które wyłącznie kopiują schemat:
+`SELECT *`, przesunięcie, różnicę, przeplot, rozplot i sumę strumieni. Przebieg działa do
+punktu stałego, bo kopia może czytać inną kopię, a drzewo jest jeszcze posortowane według
+interwału. Bez tego etapu pochodna kopia wyniku `RATIONAL` zachowywałaby parserowy typ
+`INTEGER` i po cichu obcinała część ułamkową.
+
+#### inferStringFieldTypes
+
+Po rozwiązaniu referencji ustala typ i szerokość pola wynikowego `STRING` na podstawie
+rzeczywistego pola źródłowego, literałów i `to_string`. Wykonuje się przed upraszczaniem,
+aby zwinięcie stałego wyrażenia nie zmniejszyło zadeklarowanej szerokości. Przebieg nie jest
+ogólnym wnioskowaniem typów liczbowych.
 
 #### simplifyFieldExpressions
 
-Upraszcza programy pól `SELECT` oraz warunki `RULE` po rozwiązaniu referencji,
+Upraszcza programy pól `SELECT`, argumenty agregatów okna rekordowego oraz warunki `RULE` po rozwiązaniu referencji,
 ale przed współdzieleniem równoważnych obliczeń. Przebieg zwija wyrażenia
 stałe, łączy ogony stałych w arytmetyce całkowitej i wymiernej oraz usuwa
 zgodne typowo elementy neutralne (`E+0`, `E-0`, `E*1`, `E/1`). Powtórzone
@@ -150,7 +192,8 @@ Oblicza `query::logicalOrigin`, czyli indeks pierwszego rekordu, który **w ogó
 istnieje**. Różnica wobec ogona jest jakościowa: ogon mówi „jeszcze nie teraz",
 origin mówi „ten rekord nie ma definicji". Źródłem początku logicznego jest okno
 `@(k,L)` stemplowane końcem przedziału — jego wczesne rekordy sięgałyby przed
-początek źródła — oraz przesunięcie `>N`, którego rekord `n` niesie rekord `n-N`.
+początek źródła — agregat okna rekordowego, który dodaje `W-1`, oraz przesunięcie `>N`,
+którego rekord `n` niesie rekord `n-N`.
 Pozostałe operatory origin wyłącznie przenoszą, tym samym odwzorowaniem indeksu,
 którym czytają dane.
 
@@ -167,7 +210,7 @@ bieżącego; przeplot uwzględnia ogony obu wejść i fazę rzeczywiście wybier
 składowej; suma bierze maksimum granic dostępności obu wejść. Różnica oraz oba
 rozploty używają dokładnych granic fazowych — lewy rozplot nie dodaje
 bezwarunkowo jednego slotu. AGSE używa granicy wynikającej z najnowszego pola
-okna, a redukcje nie dodają własnego ogona. Listing planu pokazuje wartość jako
+okna, a redukcje i agregaty okna rekordowego nie dodają własnego ogona. Listing planu pokazuje wartość jako
 `tail=`; runtime nie emituje podczas ogona żadnego rekordu. Liczba slotów
 milczenia wynosi `origin + tail`.
 
@@ -185,9 +228,16 @@ rekordy wyprzedzenia: rekord uzbrojony przy otwarciu storage i zerowy prefetch.
 Wynik jest ograniczany od dołu do jednego rekordu. Pojemność historii jest
 wymaganiem wykonawczym, a nie prefiksem wyniku.
 
+Agregat okna rekordowego wymaga zachowania co najmniej W kolejnych rekordów wskazanego
+źródła. Pojemność uwzględnia także jego początek logiczny, ogon i różnicę interwałów tak
+samo jak pozostałe odczyty historii; nie jest dobierana wyłącznie jako lokalne `W`.
+
 #### validateConstraints
 
-Weryfikuje poprawność semantyczną skompilowanego planu: zgodność typów, rozmiary okien, dostępność źródeł danych.
+Weryfikuje poprawność semantyczną skompilowanego planu: zgodność typów i płaskich szerokości,
+rozmiary okien, dostępność źródeł danych oraz ograniczenia operatorów. Przeplot `#` wymaga
+równych płaskich schematów, niezależnie od tego, czy wejście zapisano jako `T[N]`, czy jako N
+pól skalarnych.
 
 #### applyCapacitiesToStreams
 

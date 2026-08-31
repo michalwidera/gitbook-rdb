@@ -11,7 +11,7 @@ flowchart TD
     B["processZeroStep()<br/>Tylko DECLARE: revRead(0) → fire()"] --> C
     C["TimeLine::getNextTimeSlot()<br/>Wyznacz następny slot czasowy"] --> D
     D["getAwaitedStreamsSet()<br/>Filtruj: rInterval dzieli bieżący slot"] --> E
-    E["dataModel::processRows(inSet)<br/>Przebieg 1: nie-deklaracje → input → output → zapis<br/>Przebieg 2: deklaracje → odblokowanie"] --> F
+    E["dataModel::processRows(inSet)<br/>Przebieg 1: nie-deklaracje → input → okna SELECT → output → zapis<br/>Przebieg 2: deklaracje → odblokowanie"] --> F
     F["broadcast(inSet)<br/>Kolejki Boost IPC → klienci xqry"] --> C
 ```
 
@@ -123,7 +123,8 @@ flowchart LR
 
     subgraph P1["Przebieg 1 — nie-deklaracje (kolejność topologiczna)"]
         direction TB
-        X1["constructInputPayload()<br/>buduje dane wejściowe z FROM"] --> X2
+        X1["constructInputPayload()<br/>buduje dane wejściowe z FROM"] --> XW
+        XW["computeWindowAggregates()<br/>redukuje historię dla okien SELECT"] --> X2
         X2["constructOutputPayload()<br/>ewaluuje wyrażenia SELECT"] --> X3
         X3["write()<br/>zapis na dysk / pamięć"] --> X4
         X4["constructRulesAndUpdate()<br/>ewaluuje klauzule RULE"]
@@ -146,6 +147,20 @@ flowchart LR
 _Rys. 44. Algorytm processRows – dwa przejścia przetwarzania_
 
 Deklaracje są odblokowywane dopiero po tym, jak wszystkie zależne zapytania skonsumowały ich `outputPayload` w przejściu 1.
+
+### Okna rekordowe listy SELECT
+
+Jeżeli zapytanie zawiera `MIN`/`MAX`/`AVG`/`SUMC(wyrażenie : W)`, etap
+`computeWindowAggregates()` działa po zbudowaniu payloadu `FROM`, ale przed ewaluacją pól
+wynikowych. Dla indeksu logicznego `n` czyta rekordy wskazanego źródła od `n-(W-1)` do `n`.
+Gołe pole korzysta z bezpośredniego odczytu płaskiego slotu; ogólne wyrażenie jest obliczane
+osobno na payloadzie każdego rekordu historii.
+
+Wartości `NULL` są pomijane, a okno bez wartości obecnych zapisuje `NULL` dla wszystkich
+czterech statystyk. Grupy o tym samym źródle, programie wyrażenia i szerokości współdzielą
+jedno przejście po historii. Wyniki trafiają do `streamInstance::windowValues` i stają się
+zwykłymi operandami `constructOutputPayload()`, dlatego można pisać na przykład
+`2*MIN(a : 5)+1` albo `null2zero(AVG(a+b : 5))`.
 
 ***
 
@@ -189,13 +204,13 @@ sequenceDiagram
 
     TL-->>ES: nextSlot = 1/3
     ES->>DM: processRows({B})
-    DM->>DM: Przebieg 1: B → input(A) → output → write()
+    DM->>DM: Przebieg 1: B → input(A) → windows → output → write()
     DM->>DM: Przebieg 2: A → flux → revRead(0) → fire()
     ES->>IPC: broadcast({B})
 
     TL-->>ES: nextSlot = 1/2
     ES->>DM: processRows({C})
-    DM->>DM: Przebieg 1: C → input(B) → output → write()
+    DM->>DM: Przebieg 1: C → input(B) → windows → output → write()
     DM->>DM: Przebieg 2: A → flux → revRead(0) → fire()
     ES->>IPC: broadcast({C})
 

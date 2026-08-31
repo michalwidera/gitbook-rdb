@@ -60,6 +60,21 @@ Każdy działający proces xqry ma własną, indywidualną kolejkę komunikatów
 
 Na zakończenie xretractor usuwa wszystkie współdzielone zasoby IPC: segment pamięci współdzielonej `RetractorShmemMap`, kolejkę poleceń `RetractorQueryQueue`, mutex `RetractorMapMutex` oraz indywidualne kolejki wszystkich klientów.
 
+### Błąd krytyczny i sprzątanie awaryjne
+
+Błąd krytyczny podczas startu albo w wątku komunikacyjnym przechodzi przez tę samą końcową
+politykę własności zasobów, ale nie próbuje kontynuować cyklu. Dziennik `spdlog` jest
+opróżniany, a nie niszczony przed procedurami `atexit`. Jeżeli błąd powstał w samym wątku
+komunikacyjnym, sprzątanie odłącza ten wątek zamiast próbować dołączyć go do niego samego.
+Następnie usuwa kolejki i pamięć IPC, a blokadę usługi zwalnia jako ostatnią.
+
+Proces kończy się statusem 1. Dzięki temu kolejny start nie zastaje osieroconych zasobów ani
+blokady, a błąd pierwotny nie jest maskowany wtórnym `SIGSEGV` lub `SIGABRT` podczas
+zamykania.
+
+> **_NOTE:_** Obie ścieżki — błąd podczas startu i błąd zgłoszony z wątku komunikacyjnego —
+> sprawdza test `fatal_exit_path`.
+
 #### Co się dzieje przy wielu procesach xqry
 
 RetractorDB jest zaprojektowany do pracy z wieloma równoległymi klientami. Gdy w systemie działają jednocześnie — powiedzmy — trzy procesy xqry subskrybujące różne strumienie, a jeden z nich wywoła `xqry --kill`:
@@ -70,4 +85,3 @@ RetractorDB jest zaprojektowany do pracy z wieloma równoległymi klientami. Gdy
 - klienci, którzy nie subskrybowali żadnego strumienia (np. xqry wywołany tylko z `--dir` lub `--hello`), nie są wpisani do mapy i nie muszą być powiadamiani — te polecenia kończą działanie natychmiast po udzieleniu odpowiedzi.
 
 Warto zwrócić uwagę, że xqry wykrywa również nieaktywność serwera: jeżeli przez 10 sekund nie napłyną żadne dane, klient sam się wyłącza z ostrzeżeniem w logu. Jest to zabezpieczenie na wypadek nagłej awarii xretractor bez możliwości rozesłania komunikatu OOB.
-

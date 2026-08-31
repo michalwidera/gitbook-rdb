@@ -77,6 +77,11 @@ Strumieniowe wyrażenie algebraiczne w klauzuli `FROM` może zawierać:
 | Okno AGSE | `A @ (k, w)` | Buduje ruchome okno danych — patrz [Ruchome okno danych AGSE](../../realizacja-zapytan/ruchome-okno-danych-agse/) |
 | Redukcja | `MIN(A)` / `MAX(A)` / `AVG(A)` / `SUMC(A)` | Redukuje wielopolowy rekord do jednej wartości — patrz [Operatory agregujące](operatory-agregujace.md) |
 
+Agregaty `MIN`/`MAX`/`AVG`/`SUMC(wyrażenie : W)` występują w liście `SELECT`, a nie w
+wyrażeniu strumieniowym `FROM`. Redukują historię W rekordów i mogą być operandem większego
+wyrażenia pola, na przykład `2*MIN(a : 5)+1`. Obie osie agregacji porównuje rozdział
+[Operatory agregujące](operatory-agregujace.md).
+
 ### Priorytet i łączność
 
 Od operatorów wiążących najmocniej do najsłabiej:
@@ -92,7 +97,14 @@ Operatory binarne `#` i `+` są lewostronnie łączne. Operatory przyrostkowe r�
 
 Spacje wokół `#` nie zmieniają znaczenia: `A # B` i `A#B` są tym samym przeplotem.
 
-## Potęgowanie w wyrażeniach pól
+## Wyrażenia pól
+
+Lista `SELECT` oraz warunki `RULE` używają wyrażeń skalarnych z odwołaniami do pól,
+operatorami arytmetycznymi, wartościami `NULL` i funkcjami. Pełną składnię, priorytety,
+listę funkcji oraz reguły konwersji opisuje rozdział
+[Wyrażenia pól i funkcje skalarne](wyrazenia-pol-i-funkcje-skalarne.md).
+
+### Potęgowanie
 
 Operator `^` potęguje wartości liczbowe na liście `SELECT` i w warunkach `RULE`. Wiąże mocniej niż `*` i `/`, a te wiążą mocniej niż `+` i `-`. Potęgowanie jest prawostronnie łączne:
 
