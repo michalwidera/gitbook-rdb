@@ -300,7 +300,7 @@ Przebieg `factorMatchedHashTimeMoves()` nie usuwa jawnych strumieni użytkownika
 Test `issue202_hash_shift_e2e` wykonuje obie strony tożsamości na niezależnych
 kopiach plikowych źródeł danych. Obie strony są tu sfaktoryzowane do tej samej
 postaci, więc porównanie jest pełne: bajtowo artefakty `matched` i `CC`, ich
-metadane z pominięciem znacznika czasu utworzenia, pełna sekwencja wobec wzorca
+metadane z pominięciem zarezerwowanego nagłówka, pełna sekwencja wobec wzorca
 wyprowadzonego z okresu przeplotu `B,A,A` oraz równość deklaracji
 (`origin=3` przy zerowym ogonie — \\(\tau_3\\) nad przeplotem o ogonie 2
 pochłania go w całości). Żadna strona nie emituje rekordów zastępczych.

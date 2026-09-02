@@ -213,7 +213,7 @@ Plik `.meta` to indeks wartości null i przerw w transmisji. Przechowuje informa
 
 | Pozycja    | Zawartość                                  | Rozmiar  |
 | ---------- | ------------------------------------------ | -------- |
-| Nagłówek   | `creationTimeNs` (int64)                   | 8 bajtów |
+| Nagłówek   | pole zarezerwowane (int64, zawsze 0)       | 8 bajtów |
 | Wpis RLE 0 | `gapFlag \| count \| bitsetSize \| bitset` | zmienny  |
 | Wpis RLE 1 | `gapFlag \| count \| bitsetSize \| bitset` | zmienny  |
 | ...        | ...                                        | ...      |
@@ -309,7 +309,7 @@ _Rys. 15. Cykl życia obiektu metaData_
 **Konstruktor** (`metaData(descriptor, path)`):
 - Inicjalizuje pusty `currentEntry_` na podstawie liczby pól deskryptora.
 - Wywołuje `loadIndex()` — jeżeli plik istnieje, wczytuje wszystkie zatwierdzone segmenty, wyznacza `committedRecordCount_`, a ostatni niegapowy segment przenosi z powrotem do `currentEntry_` (umożliwia kontynuację serii RLE po restarcie).
-- Jeżeli plik nie istnieje, tworzy go i zapisuje nagłówek (znacznik czasu utworzenia strumienia).
+- Jeżeli plik nie istnieje, tworzy go i zapisuje nagłówek (8 bajtów zarezerwowanych, zera).
 
 **Destruktor** automatycznie wywołuje `flushCurrentEntry()`, gwarantując, że bieżący bufor trafi na dysk nawet gdy program zakończy pracę w normalnym trybie.
 
@@ -426,7 +426,7 @@ Dzięki temu plik `.meta` rośnie wyłącznie przy **zmianie wzorca null** — n
 
 Po restarcie procesu nowy obiekt `metaData` wczytuje plik przez `loadIndex()` (sekwencja na Rys. 18):
 
-1. Odczytuje nagłówek — znacznik czasu (`creationTimeNs`), przechowywany jako `int64` nanosekund od epoki.
+1. Pomija nagłówek — 8 bajtów zarezerwowanych; nic z nich nie jest interpretowane.
 2. Wczytuje wszystkie zatwierdzone wpisy z pliku.
 3. Jeżeli ostatni wpis **nie jest gap-em** — przenosi go z powrotem do `currentEntry_` i usuwa z pliku (umożliwia kontynuację RLE po restarcie bez duplikacji).
 4. Wyznacza `committedRecordCount_` jako sumę `recordCount` wszystkich niegalowych wpisów pozostałych w pliku.
